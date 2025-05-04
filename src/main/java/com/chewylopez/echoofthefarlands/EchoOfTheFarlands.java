@@ -35,6 +35,7 @@ public class EchoOfTheFarlands
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

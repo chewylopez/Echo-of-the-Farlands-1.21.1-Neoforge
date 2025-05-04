@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.chewylopez.echoofthefarlands.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "PerlinNoiseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
