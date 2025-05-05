@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "PerlinNoiseMixin"
+    "PerlinNoiseMixin",
+    "NoiseChunkGeneratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
