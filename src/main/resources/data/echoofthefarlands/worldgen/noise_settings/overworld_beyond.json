@@ -66,15 +66,15 @@
     "erosion": "minecraft:overworld/erosion",
     "depth": "minecraft:overworld/depth",
     "ridges": "minecraft:overworld/ridges",
-    "initia_denslity_without_jaggedness": {
+    "initial_density_without_jaggedness": {
       "type": "minecraft:add",
       "argument1": 0.1171875,
       "argument2": {
         "type": "minecraft:mul",
         "argument1": {
           "type": "minecraft:y_clamped_gradient",
-          "from_y": -256,
-          "to_y": -220,
+          "from_y": -64,
+          "to_y": -40,
           "from_value": 0,
           "to_value": 1
         },
@@ -117,7 +117,7 @@
                       }
                     }
                   },
-                  "min": -256,
+                  "min": -508,
                   "max": 64
                 }
               }
@@ -144,7 +144,7 @@
                   "type": "minecraft:mul",
                   "argument1": {
                     "type": "minecraft:y_clamped_gradient",
-                    "from_y": -256,
+                    "from_y": -508,
                     "to_y": -40,
                     "from_value": 0,
                     "to_value": 1
@@ -270,7 +270,7 @@
       "argument": {
         "type": "minecraft:range_choice",
         "input": "minecraft:y",
-        "min_inclusive": -256,
+        "min_inclusive": -508,
         "max_exclusive": 51,
         "when_in_range": {
           "type": "minecraft:noise",
@@ -293,7 +293,7 @@
             "argument": {
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
-              "min_inclusive": -256,
+              "min_inclusive": -508,
               "max_exclusive": 51,
               "when_in_range": {
                 "type": "minecraft:noise",
@@ -312,7 +312,7 @@
             "argument": {
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
-              "min_inclusive": -256,
+              "min_inclusive": -508,
               "max_exclusive": 51,
               "when_in_range": {
                 "type": "minecraft:noise",
