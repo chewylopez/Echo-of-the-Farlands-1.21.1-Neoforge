@@ -13,7 +13,7 @@ public class PerlinNoiseMixin {
 
         //conversion rate = 171.10301428
         double returnable = value;
-        if(value > 1711029629.49) {returnable = (value * 1.2550823);}
+        if(value > 1711029287.28) {returnable = (value * 1.2550827);}
         cir.setReturnValue(returnable);
     }
 }
