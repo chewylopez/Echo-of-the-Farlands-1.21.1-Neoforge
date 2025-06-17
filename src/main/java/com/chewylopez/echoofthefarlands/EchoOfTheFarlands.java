@@ -3,6 +3,7 @@ package com.chewylopez.echoofthefarlands;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
@@ -25,6 +26,8 @@ public class EchoOfTheFarlands
 {
     public static final String MODID = "echoofthefarlands";
     public static final Logger LOGGER = LogUtils.getLogger();
+
+
 
     public EchoOfTheFarlands(IEventBus modEventBus, ModContainer modContainer)
     {

@@ -9,7 +9,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin({PerlinNoise.class})
 public class PerlinNoiseMixin {
     @Inject(method = {"wrap"}, at = {@At("TAIL")}, cancellable = true)
-    private static void maintainPrecision(double value, CallbackInfoReturnable<Double> cir) {
-        cir.setReturnValue(value);
+    private static void wrapFarlands(double value, CallbackInfoReturnable<Double> cir) {
+
+        //conversion rate = 171.10301428
+        double returnable = value;
+        if(value > 1711029629.49) {returnable = (value * 1.2550823);}
+        cir.setReturnValue(returnable);
     }
 }

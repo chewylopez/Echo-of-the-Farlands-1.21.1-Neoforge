@@ -66,15 +66,15 @@
     "erosion": "minecraft:overworld/erosion",
     "depth": "minecraft:overworld/depth",
     "ridges": "minecraft:overworld/ridges",
-    "initial_density_without_jaggedness": {
+    "initia_denslity_without_jaggedness": {
       "type": "minecraft:add",
       "argument1": 0.1171875,
       "argument2": {
         "type": "minecraft:mul",
         "argument1": {
           "type": "minecraft:y_clamped_gradient",
-          "from_y": -64,
-          "to_y": -40,
+          "from_y": -256,
+          "to_y": -220,
           "from_value": 0,
           "to_value": 1
         },
@@ -89,7 +89,7 @@
               "argument1": {
                 "type": "minecraft:y_clamped_gradient",
                 "from_y": 240,
-                "to_y": 256,
+                "to_y": 1024,
                 "from_value": 1,
                 "to_value": 0
               },
@@ -117,7 +117,7 @@
                       }
                     }
                   },
-                  "min": -508,
+                  "min": -256,
                   "max": 64
                 }
               }
@@ -144,7 +144,7 @@
                   "type": "minecraft:mul",
                   "argument1": {
                     "type": "minecraft:y_clamped_gradient",
-                    "from_y": -508,
+                    "from_y": -256,
                     "to_y": -40,
                     "from_value": 0,
                     "to_value": 1
@@ -160,7 +160,7 @@
                         "argument1": {
                           "type": "minecraft:y_clamped_gradient",
                           "from_y": 240,
-                          "to_y": 256,
+                          "to_y": 1024,
                           "from_value": 1,
                           "to_value": 0
                         },
@@ -270,7 +270,7 @@
       "argument": {
         "type": "minecraft:range_choice",
         "input": "minecraft:y",
-        "min_inclusive": -60,
+        "min_inclusive": -256,
         "max_exclusive": 51,
         "when_in_range": {
           "type": "minecraft:noise",
@@ -293,7 +293,7 @@
             "argument": {
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
-              "min_inclusive": -508,
+              "min_inclusive": -256,
               "max_exclusive": 51,
               "when_in_range": {
                 "type": "minecraft:noise",
@@ -312,7 +312,7 @@
             "argument": {
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
-              "min_inclusive": -508,
+              "min_inclusive": -256,
               "max_exclusive": 51,
               "when_in_range": {
                 "type": "minecraft:noise",
@@ -661,7 +661,7 @@
                           "if_true": {
                             "type": "minecraft:y_above",
                             "anchor": {
-                              "absolute": 256
+                              "absolute": 1024
                             },
                             "surface_depth_multiplier": 0,
                             "add_stone_depth": false
@@ -2544,6 +2544,28 @@
               }
             }
           ]
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:vertical_gradient",
+          "random_name": "minecraft:hot_caverns",
+          "true_at_and_below": {
+            "absolute": -256
+          },
+          "false_at_and_above": {
+            "absolute": -248
+          }
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "minecraft:acacia_log",
+            "Properties": {
+              "axis": "y"
+            }
+          }
         }
       },
       {
