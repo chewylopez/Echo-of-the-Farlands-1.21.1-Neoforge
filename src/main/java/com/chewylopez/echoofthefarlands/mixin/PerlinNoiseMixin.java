@@ -11,9 +11,9 @@ public class PerlinNoiseMixin {
     @Inject(method = {"wrap"}, at = {@At("TAIL")}, cancellable = true)
     private static void wrapFarlands(double value, CallbackInfoReturnable<Double> cir) {
 
-        //conversion rate = 171.10301428
+        //constant of conversion = 171.10301428/block
         double returnable = value;
-        if(value > 1711029287.28) {returnable = (value * 1.2550827);}
+        if(value > 1711028690.3497) {returnable = (value + 436453504);}
         cir.setReturnValue(returnable);
     }
 }
