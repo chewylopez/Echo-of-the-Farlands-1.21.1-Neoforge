@@ -48,7 +48,7 @@
                     "from_value": 0.0,
                     "from_y": -512,
                     "to_value": 1.0,
-                    "to_y": -450
+                    "to_y": -400
                   },
                   "argument2": {
                     "type": "minecraft:add",
@@ -188,7 +188,7 @@
           "from_value": 0.0,
           "from_y": -512,
           "to_value": 1.0,
-          "to_y": -450
+          "to_y": -400
         },
         "argument2": {
           "type": "minecraft:add",
@@ -662,7 +662,7 @@
                             "type": "minecraft:y_above",
                             "add_stone_depth": false,
                             "anchor": {
-                              "absolute": 1024
+                              "absolute": 320
                             },
                             "surface_depth_multiplier": 0
                           },
@@ -2522,7 +2522,7 @@
           "false_at_and_above": {
             "absolute": -248
           },
-          "random_name": "minecraft:hot_caverns",
+          "random_name": "minecraft:hot_cavern",
           "true_at_and_below": {
             "absolute": -256
           }
@@ -2530,7 +2530,7 @@
         "then_run": {
           "type": "minecraft:block",
           "result_state": {
-            "Name": "minecraft:acacia_log",
+            "Name": "minecraft:netherrack",
             "Properties": {
               "axis": "y"
             }
