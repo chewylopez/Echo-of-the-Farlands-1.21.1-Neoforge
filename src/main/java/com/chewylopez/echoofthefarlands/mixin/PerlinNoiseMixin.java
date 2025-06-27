@@ -15,8 +15,8 @@ public class PerlinNoiseMixin {
 
     private static final double FARLANDS_LOCATION = 1000000;
     private static final double FARLANDS_ORIGINAL = 12550823;
-    private static final double STRIPELANDS_LOCATION = 6499000;
-    private static final double MOAT_LOCATION = 21103542;
+    private static final double STRIPELANDS_LOCATION = 6499000; //find new values
+    private static final double MOAT_LOCATION = 21103542; // find new values
     private static final double START_POS_DELTA = FARLANDS_ORIGINAL - FARLANDS_LOCATION;
     private static final double SCALED_FARLANDS_POSITION = FARLANDS_LOCATION * CONVERSION_FACTOR;
     private static final double STRIPE_OFFSET_X = (Math.pow((STRIPELANDS_LOCATION + START_POS_DELTA + 10) * CONVERSION_FACTOR, powFactorX(STRIPELANDS_LOCATION * CONVERSION_FACTOR)));
