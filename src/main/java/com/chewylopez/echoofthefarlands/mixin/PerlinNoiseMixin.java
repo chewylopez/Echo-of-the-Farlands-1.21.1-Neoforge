@@ -34,13 +34,17 @@ public class PerlinNoiseMixin {
     }
 
     //powFactor increases by (some constant) per 1,000,000 blocks
+
+    //with 2: farther lands = 3,222,396, moat = 3,225,040
     @Unique
     private static double powFactorX(double value){
-        return 5 + (0.8*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
+        return 1 + (2*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
     }
+    //z scaling seems to be smooth, barely any sheer changes like the x axis
+    //make constant to equal scaling, for farther lands = 5 million
     @Unique
     private static double powFactorZ(double value){
-        return 5 + (5.725065*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
+        return 1 + (7.5*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
     }
 
 
@@ -54,55 +58,39 @@ public class PerlinNoiseMixin {
 
         double returnable = value;
 
-        //prevent monoliths pre far lands (X-axis)
-        if((globalX < (FARLANDS_LOCATION - 10) && value < (CONVERSION_FACTOR * (FARLANDS_LOCATION - 10)))  &&  (globalX > (FARLANDS_LOCATION - 100000) && value > (CONVERSION_FACTOR * (FARLANDS_LOCATION - 100000)))) {
-            returnable = (value - (CONVERSION_FACTOR * 100000));
-        }
-        else if((globalX > -(FARLANDS_LOCATION - 10) && value > (CONVERSION_FACTOR * -(FARLANDS_LOCATION - 10)))  &&  (globalX < -(FARLANDS_LOCATION - 100000) && value < (CONVERSION_FACTOR * -(FARLANDS_LOCATION - 100000)))) {
-            returnable = (value + (CONVERSION_FACTOR * 100000));
-        }
-        //prevent monoliths pre far lands (Z-axis)
-        if((globalZ < (FARLANDS_LOCATION - 10) && value < (CONVERSION_FACTOR * (FARLANDS_LOCATION - 10)))  &&  (globalZ > (FARLANDS_LOCATION - 100000) && value > (CONVERSION_FACTOR * (FARLANDS_LOCATION - 100000)))) {
-            returnable = (value - (CONVERSION_FACTOR * 100000));
-        }
-        else if((globalZ > -(FARLANDS_LOCATION - 10) && value > (CONVERSION_FACTOR * -(FARLANDS_LOCATION - 10)))  &&  (globalZ < -(FARLANDS_LOCATION - 100000) && value < (CONVERSION_FACTOR * -(FARLANDS_LOCATION - 100000)))) {
-            returnable = (value + (CONVERSION_FACTOR * 100000));
-        }
-
-
-        //far lands edge facade (X-axis)
-        if((globalX > ((FARLANDS_LOCATION - 100)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR)) && (globalX < ((FARLANDS_LOCATION + 100000)) && value < ((FARLANDS_LOCATION + 100) * CONVERSION_FACTOR))) {
+        //far lands edge (X-axis)
+        if((globalX > ((FARLANDS_LOCATION - 10)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
             returnable = (value + (CONVERSION_FACTOR * START_POS_DELTA));
         }
-        else if((globalX < -((FARLANDS_LOCATION - -100)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR)) && (globalX > -((FARLANDS_LOCATION + 100000)) && value > -((FARLANDS_LOCATION + 100) * CONVERSION_FACTOR))) {
+        else if((globalX < -((FARLANDS_LOCATION - -10)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
             returnable = -(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA));
         }
-        //far lands edge facade (Z-axis)
-        if((globalZ > ((FARLANDS_LOCATION - 100)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR)) && (globalZ < ((FARLANDS_LOCATION + 100000)) && value < ((FARLANDS_LOCATION + 100) * CONVERSION_FACTOR))) {
+        //far lands edge(Z-axis)
+        if((globalZ > ((FARLANDS_LOCATION - 10)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
             returnable = (value + (CONVERSION_FACTOR * START_POS_DELTA));
         }
-        else if((globalZ < -((FARLANDS_LOCATION - 100)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR)) && (globalZ > -((FARLANDS_LOCATION + 100000)) && value > -((FARLANDS_LOCATION + 100) * CONVERSION_FACTOR))) {
+        else if((globalZ < -((FARLANDS_LOCATION - 10)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
             returnable = -(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA));
         }
 
-        //SOLVE
-        //far lands adjusted noise progression into cubelands (X-axis straight)
+        //far lands adjusted noise progression (farlands -> cubelands -> fartherlands) (X-axis straight)
         if(globalZ < (FARLANDS_LOCATION) && globalZ > -(FARLANDS_LOCATION)) {
-            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 10)) && value < (CONVERSION_FACTOR * (STRIPELANDS_LOCATION + 1000))) {
+            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
                 returnable = (Math.pow(value + (CONVERSION_FACTOR * START_POS_DELTA), powFactorX(value)));
-            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 10)) && value > -(CONVERSION_FACTOR * (STRIPELANDS_LOCATION + 1000)))
-                returnable = (Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorX(value)));
+            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
+                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorX(value)));
+            }
         }
-        //far lands adjusted noise progression into cubelands (Z-axis straight)
+        //far lands adjusted noise progression (farlands -> cubelands -> fartherlands) (Z-axis straight)
         if(globalX < (FARLANDS_LOCATION) && globalX > -(FARLANDS_LOCATION)) {
-            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 10)) && value < (CONVERSION_FACTOR * (STRIPELANDS_LOCATION + 10))) {
+            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
                 returnable = (Math.pow(value + (CONVERSION_FACTOR * START_POS_DELTA), powFactorZ(value)));
-            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 10)) && value > -(CONVERSION_FACTOR * (STRIPELANDS_LOCATION + 10))) {
-                returnable = (Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorZ(value)));
+            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
+                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorZ(value)));
             }
         }
 
-
+        /*
         //stripe lands extended (X-axis straight)
         if(globalZ < (FARLANDS_LOCATION) && globalZ > -(FARLANDS_LOCATION)) {
             if (value > (CONVERSION_FACTOR * (STRIPELANDS_LOCATION + 10)) && value < (CONVERSION_FACTOR * (MOAT_LOCATION))) {
@@ -119,6 +107,7 @@ public class PerlinNoiseMixin {
                 returnable = value - STRIPE_OFFSET_Z;
             }
         }
+         */
 
         cir.setReturnValue(returnable);
 
