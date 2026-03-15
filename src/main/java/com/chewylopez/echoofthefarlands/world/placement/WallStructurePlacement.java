@@ -14,12 +14,17 @@ import java.util.Optional;
 
 public class WallStructurePlacement extends StructurePlacement {
 
-    public static final Codec<StructurePlacement> CODEC;
+    public static final Codec<WallStructurePlacement> CODEC = null;
 
-    protected WallStructurePlacement(Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone) {
+    public WallStructurePlacement(Vec3i locateOffset, FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, Optional<ExclusionZone> exclusionZone) {
         super(locateOffset, frequencyReductionMethod, frequency, salt, exclusionZone);
     }
+/*
+    public WallStructurePlacement() {
+        super();
+    }
 
+ */
     @Override
     protected boolean isPlacementChunk(ChunkGeneratorStructureState chunkGeneratorStructureState, int x, int z) {
         return z == 0 && x == 0;
@@ -30,7 +35,4 @@ public class WallStructurePlacement extends StructurePlacement {
         return null;
     }
 
-    static {
-        CODEC = BuiltInRegistries.STRUCTURE_PLACEMENT.byNameCodec().dispatch(StructurePlacement::type, StructurePlacementType::codec);
-    }
 }
