@@ -1,5 +1,6 @@
 package com.chewylopez.echoofthefarlands.mixin;
 
+import com.chewylopez.echoofthefarlands.Config;
 import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -12,15 +13,10 @@ public class PerlinNoiseMixin {
 
     @Unique
     private static final double CONVERSION_FACTOR = 171.10301428;
-
-    private static final double FARLANDS_LOCATION = 1000000;
     private static final double FARLANDS_ORIGINAL = 12550823;
-    private static final double STRIPELANDS_LOCATION = 6499000; //find new values
-    private static final double MOAT_LOCATION = 21103542; // find new values
-    private static final double START_POS_DELTA = FARLANDS_ORIGINAL - FARLANDS_LOCATION;
-    private static final double SCALED_FARLANDS_POSITION = FARLANDS_LOCATION * CONVERSION_FACTOR;
-    private static final double STRIPE_OFFSET_X = (Math.pow((STRIPELANDS_LOCATION + START_POS_DELTA + 10) * CONVERSION_FACTOR, powFactorX(STRIPELANDS_LOCATION * CONVERSION_FACTOR)));
-    private static final double STRIPE_OFFSET_Z = (Math.pow((STRIPELANDS_LOCATION + START_POS_DELTA + 10) * CONVERSION_FACTOR, powFactorZ(STRIPELANDS_LOCATION * CONVERSION_FACTOR)));
+
+    //private static  double STRIPE_OFFSET_X = (Math.pow((STRIPELANDS_LOCATION + START_POS_DELTA + 10) * CONVERSION_FACTOR, powFactorX(STRIPELANDS_LOCATION * CONVERSION_FACTOR)));
+    //private static  double STRIPE_OFFSET_Z = (Math.pow((STRIPELANDS_LOCATION + START_POS_DELTA + 10) * CONVERSION_FACTOR, powFactorZ(STRIPELANDS_LOCATION * CONVERSION_FACTOR)));
 
     @Unique
     private static double globalX;
@@ -33,20 +29,44 @@ public class PerlinNoiseMixin {
         globalZ = z;
     }
 
-    //powFactor increases by (some constant) per 1,000,000 blocks
+    @Unique
+    private static double getFarlandsLocation(){
+        return Config.farlands_location_global;
+    }
 
+    @Unique
+    private static double getStripelandsLocation(){
+        return getFarlandsLocation() * 2; //find values
+    }
+
+    @Unique
+    private static double getMoatLocation(){
+        return getFarlandsLocation() * 2.1; //find values
+    }
+
+    @Unique
+    private static double getStartPosDelta(){
+        return FARLANDS_ORIGINAL - getFarlandsLocation();
+    }
+
+    @Unique
+    private static double getScaledFarlandsPosition(){
+        return getFarlandsLocation() * CONVERSION_FACTOR;
+    }
+
+
+    //powFactor increases by (some constant) per 1,000,000 blocks
     //with 2: farther lands = 3,222,396, moat = 3,225,040
     @Unique
     private static double powFactorX(double value){
-        return 1 + (2*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
+        return 1 + (2*((Math.abs(value) - getScaledFarlandsPosition())/(CONVERSION_FACTOR * 1000000)));
     }
     //z scaling seems to be smooth, barely any sheer changes like the x axis
     //make constant to equal scaling, for farther lands = 5 million
     @Unique
     private static double powFactorZ(double value){
-        return 1 + (7.5*((Math.abs(value) - SCALED_FARLANDS_POSITION)/(CONVERSION_FACTOR * 1000000)));
+        return 1 + (7.5*((Math.abs(value) - getScaledFarlandsPosition())/(CONVERSION_FACTOR * 1000000)));
     }
-
 
     /**
      * @param value
@@ -59,34 +79,34 @@ public class PerlinNoiseMixin {
         double returnable = value;
 
         //far lands edge (X-axis)
-        if((globalX > ((FARLANDS_LOCATION - 10)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
-            returnable = (value + (CONVERSION_FACTOR * START_POS_DELTA));
+        if((globalX > ((getFarlandsLocation() - 10)) && value > ((getFarlandsLocation() - 10) * CONVERSION_FACTOR))) {
+            returnable = (value + (CONVERSION_FACTOR * getStartPosDelta()));
         }
-        else if((globalX < -((FARLANDS_LOCATION - -10)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
-            returnable = -(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA));
+        else if((globalX < -((getFarlandsLocation() - -10)) && value < -((getFarlandsLocation() - 10) * CONVERSION_FACTOR))) {
+            returnable = -(Math.abs(value) + (CONVERSION_FACTOR * getStartPosDelta()));
         }
         //far lands edge(Z-axis)
-        if((globalZ > ((FARLANDS_LOCATION - 10)) && value > ((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
-            returnable = (value + (CONVERSION_FACTOR * START_POS_DELTA));
+        if((globalZ > ((getFarlandsLocation() - 10)) && value > ((getFarlandsLocation() - 10) * CONVERSION_FACTOR))) {
+            returnable = (value + (CONVERSION_FACTOR * getStartPosDelta()));
         }
-        else if((globalZ < -((FARLANDS_LOCATION - 10)) && value < -((FARLANDS_LOCATION - 10) * CONVERSION_FACTOR))) {
-            returnable = -(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA));
+        else if((globalZ < -((getFarlandsLocation() - 10)) && value < -((getFarlandsLocation() - 10) * CONVERSION_FACTOR))) {
+            returnable = -(Math.abs(value) + (CONVERSION_FACTOR * getStartPosDelta()));
         }
 
         //far lands adjusted noise progression (farlands -> cubelands -> fartherlands) (X-axis straight)
-        if(globalZ < (FARLANDS_LOCATION) && globalZ > -(FARLANDS_LOCATION)) {
-            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
-                returnable = (Math.pow(value + (CONVERSION_FACTOR * START_POS_DELTA), powFactorX(value)));
-            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
-                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorX(value)));
+        if(globalZ < (getFarlandsLocation()) && globalZ > -(getFarlandsLocation())) {
+            if (value > (CONVERSION_FACTOR * (getFarlandsLocation() + 1000))) {
+                returnable = (Math.pow(value + (CONVERSION_FACTOR * getStartPosDelta()), powFactorX(value)));
+            } else if (value < -(CONVERSION_FACTOR * (getFarlandsLocation() + 1000))) {
+                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * getStartPosDelta()), powFactorX(value)));
             }
         }
         //far lands adjusted noise progression (farlands -> cubelands -> fartherlands) (Z-axis straight)
-        if(globalX < (FARLANDS_LOCATION) && globalX > -(FARLANDS_LOCATION)) {
-            if (value > (CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
-                returnable = (Math.pow(value + (CONVERSION_FACTOR * START_POS_DELTA), powFactorZ(value)));
-            } else if (value < -(CONVERSION_FACTOR * (FARLANDS_LOCATION + 1000))) {
-                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * START_POS_DELTA), powFactorZ(value)));
+        if(globalX < (getFarlandsLocation()) && globalX > -(getFarlandsLocation())) {
+            if (value > (CONVERSION_FACTOR * (getFarlandsLocation() + 1000))) {
+                returnable = (Math.pow(value + (CONVERSION_FACTOR * getStartPosDelta()), powFactorZ(value)));
+            } else if (value < -(CONVERSION_FACTOR * (getFarlandsLocation() + 1000))) {
+                returnable = -(Math.pow(Math.abs(value) + (CONVERSION_FACTOR * getStartPosDelta()), powFactorZ(value)));
             }
         }
 
