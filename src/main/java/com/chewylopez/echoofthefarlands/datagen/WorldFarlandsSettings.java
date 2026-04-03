@@ -1,5 +1,6 @@
 package com.chewylopez.echoofthefarlands.datagen;
 
+import com.chewylopez.echoofthefarlands.Config;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -8,8 +9,33 @@ import net.minecraft.world.level.saveddata.SavedData;
 public class WorldFarlandsSettings extends SavedData {
 
     private static final String FARLANDS_FILE_ID = "farlands";
-    private static int FARLANDS_POSITION = 1000000;
-    private static int FARLANDS_GEN_TYPE = 1;
+
+    private int FARLANDS_POSITION;
+    private int FARLANDS_GEN_TYPE;
+
+    private boolean isNew = false;
+
+    public WorldFarlandsSettings() {
+        isNew = true;
+    }
+
+    public int getFarlandsPosition(){
+        return FARLANDS_POSITION;
+    }
+
+    public int getFarlandsGenType(){
+        return FARLANDS_GEN_TYPE;
+    }
+
+    public void setFarlandsPosition(int val) {
+        FARLANDS_POSITION = val;
+        this.setDirty();
+    }
+
+    public void setFarlandsGenType(int val) {
+        FARLANDS_GEN_TYPE = val;
+        this.setDirty();
+    }
 
     public static WorldFarlandsSettings create() {
         return new WorldFarlandsSettings();
@@ -17,6 +43,10 @@ public class WorldFarlandsSettings extends SavedData {
 
     public static WorldFarlandsSettings load(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         WorldFarlandsSettings data = WorldFarlandsSettings.create();
+        if (tag.contains("FarlandsPosition")) data.FARLANDS_POSITION = tag.getInt("FarlandsPosition");
+        if (tag.contains("FarlandsGenType")) data.FARLANDS_GEN_TYPE = tag.getInt("FarlandsGenType");
+
+        data.isNew = false;
         return data;
     }
 
@@ -27,8 +57,12 @@ public class WorldFarlandsSettings extends SavedData {
         return tag;
     }
 
-    public static WorldFarlandsSettings write(ServerLevel level) {
+    public static WorldFarlandsSettings getSettings(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(new Factory<>(WorldFarlandsSettings::create, WorldFarlandsSettings::load), FARLANDS_FILE_ID);
+    }
+
+    public boolean isNewWorld() {
+        return isNew;
     }
 
 }
