@@ -25,10 +25,10 @@ public class ConfigScreen extends Screen {
         textbox.setValue("" + Config.FARLANDS_LOCATION_CONFIG.get());
         textbox.setFilter(text -> {
             try {
-                Integer.parseInt(text); // try parsing as integer
+                Integer.parseInt(text);
                 return true;
             } catch (NumberFormatException e) {
-                return false; // reject non-numeric input
+                return false;
             }
         });
         addRenderableWidget(textbox);
@@ -38,8 +38,7 @@ public class ConfigScreen extends Screen {
 
         addRenderableWidget(new StringWidget(this.width/2-100, 70, 200, 20, Component.literal("farlands location (default is 1,000,000)"), font.self()));
         addRenderableWidget(Button.builder(Component.literal("Update Value"), button -> {
-                Config.FARLANDS_LOCATION_CONFIG.set(Integer.parseInt(textbox.getValue())); // or any logic you want
+                Config.FARLANDS_LOCATION_CONFIG.set(Integer.parseInt(textbox.getValue()));
                 }).bounds(this.width / 2 - 100, 130, 200, 20).build());
-
     }
 }
