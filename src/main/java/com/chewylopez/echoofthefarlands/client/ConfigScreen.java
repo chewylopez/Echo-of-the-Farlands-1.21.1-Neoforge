@@ -1,5 +1,6 @@
 package com.chewylopez.echoofthefarlands.client;
 
+import com.chewylopez.echoofthefarlands.Config;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.FocusableTextWidget;
@@ -20,17 +21,25 @@ public class ConfigScreen extends Screen {
     @Override
     protected void init() {
 
-        addRenderableWidget(
-                Button.builder(Component.literal("Done"), button -> this.minecraft.setScreen(parent)).bounds(this.width / 2 - 100, this.height - 40, 200, 20).build()
-        );
+        EditBox textbox = new EditBox(font.self(), this.width/2-100, 100, 200, 20, Component.literal("farlandsLocation"));
+        textbox.setValue("" + Config.FARLANDS_LOCATION_CONFIG.get());
+        textbox.setFilter(text -> {
+            try {
+                Integer.parseInt(text); // try parsing as integer
+                return true;
+            } catch (NumberFormatException e) {
+                return false; // reject non-numeric input
+            }
+        });
+        addRenderableWidget(textbox);
 
-        addRenderableWidget(
-                new EditBox(font.self(), this.width/2-100, 100, 200, 20, Component.literal("farlandsLocation"))
-        );
+        Button done = Button.builder(Component.literal("Done"), button -> this.minecraft.setScreen(parent)).bounds(this.width / 2 - 100, this.height - 40, 200, 20).build();
+        addRenderableWidget(done);
 
-        addRenderableWidget(
-                new StringWidget(this.width/2-100, 70, 200, 20, Component.literal("farlands location (default is 1,000,000)"), font.self())
-        );
+        addRenderableWidget(new StringWidget(this.width/2-100, 70, 200, 20, Component.literal("farlands location (default is 1,000,000)"), font.self()));
+        addRenderableWidget(Button.builder(Component.literal("Update Value"), button -> {
+                Config.FARLANDS_LOCATION_CONFIG.set(Integer.parseInt(textbox.getValue())); // or any logic you want
+                }).bounds(this.width / 2 - 100, 130, 200, 20).build());
 
     }
 }
