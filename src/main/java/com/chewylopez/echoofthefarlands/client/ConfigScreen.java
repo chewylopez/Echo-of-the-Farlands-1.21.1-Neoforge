@@ -39,6 +39,7 @@ public class ConfigScreen extends Screen {
         addRenderableWidget(new StringWidget(this.width/2-100, 70, 200, 20, Component.literal("farlands location (default is 1,000,000)"), font.self()));
         addRenderableWidget(Button.builder(Component.literal("Update Value"), button -> {
                 Config.FARLANDS_LOCATION_CONFIG.set(Integer.parseInt(textbox.getValue()));
+                Config.FARLANDS_LOCATION_CONFIG.save();
                 }).bounds(this.width / 2 - 100, 130, 200, 20).build());
     }
 }
