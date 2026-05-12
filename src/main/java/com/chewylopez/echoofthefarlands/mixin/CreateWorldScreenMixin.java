@@ -42,12 +42,12 @@ public abstract class CreateWorldScreenMixin extends GridLayoutTab {
                 });
 
         CycleButton<String> FarlandsGenType = CycleButton.<String>builder(value -> Component.literal(value))
-                .withValues("Exponential", "Linear", "Original Farlands (unscaled)", "Sine Wave")
+                .withValues("Original Farlands (unscaled)", "Exponential", "Linear", "Sine Wave")
                 .create(0, 0, 150, 20, Component.literal("Gen Type"), (btn, value) -> {
                     Config.FARLANDS_GEN_TYPE = switch (value) {
-                        case "Exponential" -> 0;
+                        case "Original (unscaled)" -> 0;
                         case "Linear" -> 1;
-                        case "Original (unscaled)" -> 2;
+                        case "Exponential" -> 2;
                         case "Sine Wave" -> 3;
                         default -> 0;
                     };

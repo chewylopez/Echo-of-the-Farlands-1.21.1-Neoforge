@@ -71,13 +71,13 @@ public class PerlinNoiseMixin {
             returnable = farlandsDelayedNoise(value);
         }
 
-        if(value > getScaledFarlandsPosition() || value < -getScaledFarlandsPosition()) {
+        if(Math.abs(value) > getScaledFarlandsPosition()) {
             if (getFarlandsGenType() == 0) {
-                returnable = exponentialScaling(value);
+                returnable = offsetUnscaledGeneration(value);
             } else if (getFarlandsGenType() == 1) {
                 returnable = linearScaling(value);
             } else if (getFarlandsGenType() == 2) {
-                returnable = offsetUnscaledGeneration(value);
+                returnable = exponentialScaling(value);
             } else if (getFarlandsGenType() == 3) {
                 returnable = sineWaveScaling(value);
             }
@@ -118,12 +118,12 @@ public class PerlinNoiseMixin {
 
         //positive scaling
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-                returnable = value * LINEAR_SCALAR_FACTOR;
+                returnable = (value * LINEAR_SCALAR_FACTOR);
         }
 
         //negative scaling
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-                returnable = value * LINEAR_SCALAR_FACTOR;
+                returnable = (value * LINEAR_SCALAR_FACTOR);
         }
 
         return returnable;
@@ -137,12 +137,12 @@ public class PerlinNoiseMixin {
 
         //positive scaling
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-            returnable = Math.sin(value) * (value + (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
+            returnable = (2 * Math.sin(value)) * (value + (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
         }
 
         //negative scaling
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-            returnable = -Math.sin(value) * (value - (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
+            returnable = -(2 * Math.sin(value)) * (value - (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
         }
 
         return returnable;
