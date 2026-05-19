@@ -12,13 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PerlinNoiseMixin {
 
     @Unique
-    private static final double CONVERSION_FACTOR_CONSTANT = 171.103;
+    private static final double NOISE_SCALAR_CONSTANT = 171.103;
 
     @Unique
     private static final double FARLANDS_ORIGINAL = 12550823;
 
     @Unique
-    private static final double LINEAR_SCALAR_FACTOR = Math.pow(10, 15);
+    private static final double LINEAR_SCALAR_FACTOR = Math.pow(10.0, 15.0);
 
     @Unique
     private static double globalX;
@@ -49,12 +49,12 @@ public class PerlinNoiseMixin {
 
     @Unique
     private static double getScaledFarlandsPosition(){
-        return getFarlandsLocation() * CONVERSION_FACTOR_CONSTANT;
+        return getFarlandsLocation() * NOISE_SCALAR_CONSTANT;
     }
 
     @Unique
     private static double expScaleFactor(double value){
-        return 1 + (2*((Math.abs(value) - getScaledFarlandsPosition())/(CONVERSION_FACTOR_CONSTANT * 1000000)));
+        return 1 + (2*((Math.abs(value) - getScaledFarlandsPosition())/(NOISE_SCALAR_CONSTANT * 1000000)));
     }
 
     /**
@@ -99,12 +99,12 @@ public class PerlinNoiseMixin {
 
         //positive scaling
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-            returnable = Math.pow(FARLANDS_ORIGINAL * CONVERSION_FACTOR_CONSTANT, expScaleFactor(value));
+            returnable = Math.pow(FARLANDS_ORIGINAL * NOISE_SCALAR_CONSTANT, expScaleFactor(value));
         }
 
         //negative scaling
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-            returnable = -Math.pow(FARLANDS_ORIGINAL * CONVERSION_FACTOR_CONSTANT, expScaleFactor(value));
+            returnable = -Math.pow(FARLANDS_ORIGINAL * NOISE_SCALAR_CONSTANT, expScaleFactor(value));
         }
 
         return returnable;
@@ -118,12 +118,12 @@ public class PerlinNoiseMixin {
 
         //positive scaling
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-                returnable = (value * LINEAR_SCALAR_FACTOR);
+            returnable = (value * LINEAR_SCALAR_FACTOR);
         }
 
         //negative scaling
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-                returnable = (value * LINEAR_SCALAR_FACTOR);
+            returnable = (value * LINEAR_SCALAR_FACTOR);
         }
 
         return returnable;
@@ -137,12 +137,12 @@ public class PerlinNoiseMixin {
 
         //positive scaling
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-            returnable = (2 * Math.sin(value)) * (value + (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
+            returnable = (2 * Math.sin(value)) * (value + (getStartPosDelta() * NOISE_SCALAR_CONSTANT) );
         }
 
         //negative scaling
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-            returnable = -(2 * Math.sin(value)) * (value - (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT) );
+            returnable = -(2 * Math.sin(value)) * (value - (getStartPosDelta() * NOISE_SCALAR_CONSTANT) );
         }
 
         return returnable;
@@ -155,12 +155,12 @@ public class PerlinNoiseMixin {
 
         //positive
         if(globalX > getFarlandsLocation() || globalZ > getFarlandsLocation()) {
-            returnable = value + (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT);
+            returnable = value + (getStartPosDelta() * NOISE_SCALAR_CONSTANT);
         }
 
         //negative
         if(globalX < -getFarlandsLocation() || globalZ < -getFarlandsLocation()) {
-            returnable = value - (getStartPosDelta() * CONVERSION_FACTOR_CONSTANT);
+            returnable = value - (getStartPosDelta() * NOISE_SCALAR_CONSTANT);
         }
 
         return returnable;

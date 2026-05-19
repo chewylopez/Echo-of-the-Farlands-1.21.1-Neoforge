@@ -9,6 +9,8 @@ import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
+import java.awt.*;
+
 public class ConfigScreen extends Screen {
 
     private final Screen parent;
@@ -26,6 +28,7 @@ public class ConfigScreen extends Screen {
         textbox.setFilter(text -> {
             try {
                 Integer.parseInt(text);
+                textbox.setTextColor(14737632);
                 return true;
             } catch (NumberFormatException e) {
                 return false;
@@ -40,6 +43,8 @@ public class ConfigScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal("Update Value"), button -> {
                 Config.FARLANDS_LOCATION_CONFIG.set(Integer.parseInt(textbox.getValue()));
                 Config.FARLANDS_LOCATION_CONFIG.save();
+                Config.SPEC.save();
+                textbox.setTextColor(424242);
                 }).bounds(this.width / 2 - 100, 130, 200, 20).build());
     }
 }

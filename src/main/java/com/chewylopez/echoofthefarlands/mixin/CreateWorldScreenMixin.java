@@ -36,7 +36,7 @@ public abstract class CreateWorldScreenMixin extends GridLayoutTab {
                         case "1000000" -> 1000000;
                         case "original (12550823)" -> 12550823;
                         case "Custom Config Value" -> Config.FARLANDS_LOCATION_CONFIG.get();
-                        default -> 1000000;
+                        default -> Config.FARLANDS_LOCATION_CONFIG.get();
                     };
                     System.out.println("Farlands Position updated: " + Config.FARLANDS_LOCATION_WORLD);
                 });
