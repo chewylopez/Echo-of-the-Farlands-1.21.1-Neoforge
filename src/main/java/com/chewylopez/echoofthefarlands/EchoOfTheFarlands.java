@@ -1,6 +1,9 @@
 package com.chewylopez.echoofthefarlands;
 
+import com.chewylopez.echoofthefarlands.world.biome.ModBiomeSourceLists;
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -25,11 +28,12 @@ public class EchoOfTheFarlands
         NeoForge.EVENT_BUS.register(this);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
         ModLoadingContext.get().registerExtensionPoint(
                 IConfigScreenFactory.class,
                 () -> (minecraft, parent) -> new ConfigScreen(parent)
         );
+
+        ModBiomeSourceLists.registerBiomeSourcePresets();
 
     }
 
