@@ -1,11 +1,58 @@
 {
   "type": "minecraft:add",
   "argument1": {
-    "type": "minecraft:y_clamped_gradient",
-    "from_value": 1.5,
-    "from_y": -64,
-    "to_value": -1.5,
-    "to_y": 320
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:add",
+        "argument1": {
+          "type": "minecraft:y_clamped_gradient",
+          "from_value": 1.5,
+          "from_y": -64,
+          "to_value": 0.0,
+          "to_y": 128
+        },
+        "argument2": {
+          "type": "minecraft:y_clamped_gradient",
+          "from_value": 0.0,
+          "from_y": 128,
+          "to_value": -0.4,
+          "to_y": 300
+        }
+      },
+      "argument2": {
+        "type": "minecraft:y_clamped_gradient",
+        "from_value": 0.0,
+        "from_y": 300,
+        "to_value": -0.9,
+        "to_y": 900
+      }
+    },
+    "argument2": {
+      "type": "minecraft:y_clamped_gradient",
+      "from_value": 1.0,
+      "from_y": -512,
+      "to_value": 0.0,
+      "to_y": -64
+    }
   },
-  "argument2": "echoofthefarlands:overworld_beyond/offset"
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "echoofthefarlands:overworld_beyond/offset",
+    "argument2": {
+      "type": "minecraft:clamp",
+      "input": {
+        "type": "minecraft:mul",
+        "argument1": 2.5,
+        "argument2": {
+          "type": "minecraft:add",
+          "argument1": "echoofthefarlands:overworld_beyond/continents",
+          "argument2": 0.2
+        }
+      },
+      "min": -1.6,
+      "max": 0.0
+    }
+  }
 }

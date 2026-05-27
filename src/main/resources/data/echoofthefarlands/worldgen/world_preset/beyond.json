@@ -6,7 +6,7 @@
         "type": "minecraft:noise",
         "biome_source": {
           "type": "minecraft:multi_noise",
-          "preset": "minecraft:overworld"
+          "preset": "echoofthefarlands:overworld_beyond"
         },
         "settings": "echoofthefarlands:overworld_beyond"
       }

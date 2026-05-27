@@ -48,7 +48,7 @@
                     "from_value": 0.0,
                     "from_y": -512,
                     "to_value": 1.0,
-                    "to_y": -400
+                    "to_y": -488
                   },
                   "argument2": {
                     "type": "minecraft:add",
@@ -61,9 +61,9 @@
                         "argument1": {
                           "type": "minecraft:y_clamped_gradient",
                           "from_value": 1.0,
-                          "from_y": 400,
+                          "from_y": 1000,
                           "to_value": 0.0,
-                          "to_y": 512
+                          "to_y": 1024
                         },
                         "argument2": {
                           "type": "minecraft:add",
@@ -188,7 +188,7 @@
           "from_value": 0.0,
           "from_y": -512,
           "to_value": 1.0,
-          "to_y": -400
+          "to_y": -488
         },
         "argument2": {
           "type": "minecraft:add",
@@ -201,9 +201,9 @@
               "argument1": {
                 "type": "minecraft:y_clamped_gradient",
                 "from_value": 1.0,
-                "from_y": 400,
+                "from_y": 1000,
                 "to_value": 0.0,
-                "to_y": 512
+                "to_y": 1024
               },
               "argument2": {
                 "type": "minecraft:add",
@@ -230,7 +230,7 @@
                     }
                   },
                   "max": 64.0,
-                  "min": -512.0
+                  "min": -64.0
                 }
               }
             }
@@ -251,7 +251,7 @@
       "shift_x": "minecraft:shift_x",
       "shift_y": 0.0,
       "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.25,
+      "xz_scale": 0.1,
       "y_scale": 0.0
     },
     "vegetation": {
@@ -260,7 +260,7 @@
       "shift_x": "minecraft:shift_x",
       "shift_y": 0.0,
       "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.25,
+      "xz_scale": 0.1,
       "y_scale": 0.0
     },
     "vein_gap": {
@@ -282,7 +282,7 @@
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
               "max_exclusive": 51.0,
-              "min_inclusive": -508.0,
+              "min_inclusive": -60.0,
               "when_in_range": {
                 "type": "minecraft:noise",
                 "noise": "minecraft:ore_vein_a",
@@ -301,7 +301,7 @@
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
               "max_exclusive": 51.0,
-              "min_inclusive": -508.0,
+              "min_inclusive": -60.0,
               "when_in_range": {
                 "type": "minecraft:noise",
                 "noise": "minecraft:ore_vein_b",
@@ -320,7 +320,7 @@
         "type": "minecraft:range_choice",
         "input": "minecraft:y",
         "max_exclusive": 51.0,
-        "min_inclusive": -508.0,
+        "min_inclusive": -60.0,
         "when_in_range": {
           "type": "minecraft:noise",
           "noise": "minecraft:ore_veininess",
@@ -662,7 +662,7 @@
                             "type": "minecraft:y_above",
                             "add_stone_depth": false,
                             "anchor": {
-                              "absolute": 320
+                              "absolute": 256
                             },
                             "surface_depth_multiplier": 0
                           },
@@ -2513,28 +2513,6 @@
               }
             }
           ]
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:vertical_gradient",
-          "false_at_and_above": {
-            "absolute": -248
-          },
-          "random_name": "minecraft:hot_cavern",
-          "true_at_and_below": {
-            "absolute": -256
-          }
-        },
-        "then_run": {
-          "type": "minecraft:block",
-          "result_state": {
-            "Name": "minecraft:netherrack",
-            "Properties": {
-              "axis": "y"
-            }
-          }
         }
       },
       {

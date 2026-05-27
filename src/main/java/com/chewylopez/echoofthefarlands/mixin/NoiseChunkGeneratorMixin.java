@@ -15,7 +15,8 @@ public class NoiseChunkGeneratorMixin {
     @Inject(method = {"createFluidPicker"}, at = {@At("TAIL")}, cancellable = true)
     private static void createFluidPacker(NoiseGeneratorSettings settings, CallbackInfoReturnable<Aquifer.FluidPicker> returnable) {
 
-        int lavaOffset = (int)(Math.abs(settings.noiseSettings().minY()) * 0.172);
+        // 0.172 is vanilla ratio
+        int lavaOffset = (int)(Math.abs(settings.noiseSettings().minY()) * 0.1);
         Aquifer.FluidStatus aquiferdefaultlava = new Aquifer.FluidStatus(settings.noiseSettings().minY() + lavaOffset, Blocks.LAVA.defaultBlockState());
         int i = settings.seaLevel();
 
