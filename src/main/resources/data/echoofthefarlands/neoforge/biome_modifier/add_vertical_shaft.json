@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "echoofthefarlands:vertical_shaft",
+  "step": "underground_decoration"
+}

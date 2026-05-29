@@ -7,52 +7,85 @@
       "argument1": {
         "type": "minecraft:add",
         "argument1": {
-          "type": "minecraft:y_clamped_gradient",
-          "from_value": 1.5,
-          "from_y": -64,
-          "to_value": 0.0,
-          "to_y": 128
+          "type": "minecraft:add",
+          "argument1": {
+            "type": "minecraft:add",
+            "argument1": {
+              "type": "minecraft:add",
+              "argument1": {
+                "type": "minecraft:y_clamped_gradient",
+                "from_value": 1.5,
+                "from_y": -64,
+                "to_value": 0.219,
+                "to_y": 100
+              },
+              "argument2": {
+                "type": "minecraft:y_clamped_gradient",
+                "from_value": 0.0,
+                "from_y": 100,
+                "to_value": -0.219,
+                "to_y": 160
+              }
+            },
+            "argument2": {
+              "type": "minecraft:y_clamped_gradient",
+              "from_value": 0.0,
+              "from_y": 160,
+              "to_value": -0.4,
+              "to_y": 450
+            }
+          },
+          "argument2": {
+            "type": "minecraft:y_clamped_gradient",
+            "from_value": 0.0,
+            "from_y": 450,
+            "to_value": -0.5,
+            "to_y": 700
+          }
         },
         "argument2": {
           "type": "minecraft:y_clamped_gradient",
           "from_value": 0.0,
-          "from_y": 128,
-          "to_value": -0.4,
-          "to_y": 300
+          "from_y": 700,
+          "to_value": -3.0,
+          "to_y": 750
         }
       },
       "argument2": {
         "type": "minecraft:y_clamped_gradient",
-        "from_value": 0.0,
-        "from_y": 300,
-        "to_value": -0.9,
-        "to_y": 900
+        "from_value": 1.0,
+        "from_y": -512,
+        "to_value": 0.0,
+        "to_y": -64
       }
     },
     "argument2": {
-      "type": "minecraft:y_clamped_gradient",
-      "from_value": 1.0,
-      "from_y": -512,
-      "to_value": 0.0,
-      "to_y": -64
+      "type": "minecraft:add",
+      "argument1": "echoofthefarlands:overworld_beyond/offset",
+      "argument2": {
+        "type": "minecraft:clamp",
+        "input": {
+          "type": "minecraft:mul",
+          "argument1": 2.5,
+          "argument2": {
+            "type": "minecraft:add",
+            "argument1": "echoofthefarlands:overworld_beyond/continents",
+            "argument2": 0.2
+          }
+        },
+        "min": -1.6,
+        "max": 0.0
+      }
     }
   },
   "argument2": {
-    "type": "minecraft:add",
-    "argument1": "echoofthefarlands:overworld_beyond/offset",
+    "type": "minecraft:mul",
+    "argument1": 0.3,
     "argument2": {
-      "type": "minecraft:clamp",
-      "input": {
-        "type": "minecraft:mul",
-        "argument1": 2.5,
-        "argument2": {
-          "type": "minecraft:add",
-          "argument1": "echoofthefarlands:overworld_beyond/continents",
-          "argument2": 0.2
-        }
-      },
-      "min": -1.6,
-      "max": 0.0
+      "type": "minecraft:noise",
+      "noise": "minecraft:surface",
+      "xz_scale": 0.4,
+      "y_scale": 0.0
     }
   }
 }

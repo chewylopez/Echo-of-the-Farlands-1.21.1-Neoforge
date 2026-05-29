@@ -1,0 +1,7 @@
+{
+  "type": "echoofthefarlands:vertical_shaft",
+  "config": {
+    "min_radius": 3,
+    "max_radius": 7
+  }
+}

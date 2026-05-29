@@ -1,4 +1,4 @@
-package com.chewylopez.echoofthefarlands.mixin;
+package com.chewylopez.echoofthefarlands.mixin.noise;
 
 import com.chewylopez.echoofthefarlands.Config;
 import net.minecraft.world.level.levelgen.synth.PerlinNoise;

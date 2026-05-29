@@ -4,11 +4,13 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
-    "CreateWorldScreenMixin"
+    "client.CreateWorldScreenMixin"
   ],
   "mixins": [
-    "NoiseChunkGeneratorMixin",
-    "PerlinNoiseMixin"
+    "noise.NoiseChunkGeneratorMixin",
+    "noise.PerlinNoiseMixin",
+    "structures.MonumentBuildingMixin",
+    "structures.OceanMonumentMixin"
   ],
   "injectors": {
     "defaultRequire": 1

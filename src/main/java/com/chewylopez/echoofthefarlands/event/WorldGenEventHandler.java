@@ -3,12 +3,16 @@ package com.chewylopez.echoofthefarlands.event;
 import com.chewylopez.echoofthefarlands.Config;
 import com.chewylopez.echoofthefarlands.EchoOfTheFarlands;
 import com.chewylopez.echoofthefarlands.datagen.WorldFarlandsSettings;
+import com.chewylopez.echoofthefarlands.world.biome.FloatingIslandsBiomeSource;
 import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 @EventBusSubscriber(modid = EchoOfTheFarlands.MODID)
 public class WorldGenEventHandler {

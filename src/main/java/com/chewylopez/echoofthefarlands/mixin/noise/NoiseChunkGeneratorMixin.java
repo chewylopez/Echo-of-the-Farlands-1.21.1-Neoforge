@@ -1,4 +1,4 @@
-package com.chewylopez.echoofthefarlands.mixin;
+package com.chewylopez.echoofthefarlands.mixin.noise;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.DimensionType;

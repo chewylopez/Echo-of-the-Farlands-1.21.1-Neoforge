@@ -1,4 +1,4 @@
-package com.chewylopez.echoofthefarlands.mixin;
+package com.chewylopez.echoofthefarlands.mixin.client;
 
 import com.chewylopez.echoofthefarlands.Config;
 import com.chewylopez.echoofthefarlands.datagen.WorldFarlandsSettings;

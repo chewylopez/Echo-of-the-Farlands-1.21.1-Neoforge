@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:remove_features",
+  "biomes": [
+    "minecraft:deep_ocean",
+    "minecraft:deep_cold_ocean",
+    "minecraft:deep_lukewarm_ocean",
+    "minecraft:deep_frozen_ocean",
+    "echoofthefarlands:abyssal_depths"
+  ],
+  "features": "minecraft:amethyst_geode",
+  "steps": "underground_decoration"
+}

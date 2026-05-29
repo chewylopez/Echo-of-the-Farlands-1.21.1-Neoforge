@@ -12,15 +12,25 @@
           "argument1": "echoofthefarlands:overworld_beyond/depth",
           "argument2": {
             "type": "minecraft:mul",
-            "argument1": "echoofthefarlands:overworld_beyond/jaggedness",
-            "argument2": {
-              "type": "minecraft:half_negative",
-              "argument": {
-                "type": "minecraft:noise",
-                "noise": "minecraft:jagged",
-                "xz_scale": 200.0,
-                "y_scale": 0.0
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": "echoofthefarlands:overworld_beyond/jaggedness",
+              "argument2": {
+                "type": "minecraft:half_negative",
+                "argument": {
+                  "type": "minecraft:noise",
+                  "noise": "minecraft:jagged",
+                  "xz_scale": 200.0,
+                  "y_scale": 0.0
+                }
               }
+            },
+            "argument2": {
+              "type": "minecraft:y_clamped_gradient",
+              "from_y": 200,
+              "to_y": 360,
+              "from_value": 1.0,
+              "to_value": 0.0
             }
           }
         },
@@ -28,5 +38,9 @@
       }
     }
   },
-  "argument2": "echoofthefarlands:overworld_beyond/base_3d_noise"
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 1.0,
+    "argument2": "echoofthefarlands:overworld_beyond/base_3d_noise"
+  }
 }

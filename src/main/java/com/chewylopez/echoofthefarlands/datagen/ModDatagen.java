@@ -13,6 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -32,4 +33,11 @@ public class ModDatagen {
 
         generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(generator.getPackOutput(), event.getLookupProvider(), BUILDER, Set.of(EchoOfTheFarlands.MODID)));
     }
+
+    @SubscribeEvent
+    public static void register(RegisterEvent event) {
+        //event.register(Registries.DENSITY_FUNCTION_TYPE, h -> h.register(ResourceLocation.fromNamespaceAndPath(EchoOfTheFarlands.MODID, "floating_island"), FloatingIslandDensity.CODEC));
+        //event.register(Registries.BIOME_SOURCE, h -> h.register(ResourceLocation.fromNamespaceAndPath(EchoOfTheFarlands.MODID, "floating_islands_source"), FloatingIslandsBiomeSource.CODEC));
+    }
+
 }

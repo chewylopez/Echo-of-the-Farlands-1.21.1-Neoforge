@@ -18,7 +18,7 @@
       "argument2": {
         "type": "minecraft:mul",
         "argument1": 0.083,
-        "argument2": "minecraft:overworld/caves/spaghetti_2d_thickness_modulator"
+        "argument2": "echoofthefarlands:overworld_beyond/caves/spaghetti_2d_thickness_modulator"
       }
     },
     "argument2": {
@@ -46,13 +46,13 @@
             "argument2": {
               "type": "minecraft:y_clamped_gradient",
               "from_value": 8.0,
-              "from_y": -64,
+              "from_y": -500,
               "to_value": -40.0,
               "to_y": 320
             }
           }
         },
-        "argument2": "minecraft:overworld/caves/spaghetti_2d_thickness_modulator"
+        "argument2": "echoofthefarlands:overworld_beyond/caves/spaghetti_2d_thickness_modulator"
       }
     }
   },
