@@ -12,7 +12,7 @@ public class AbyssalDepths extends ModBiome {
         return new Climate.ParameterPoint(
                 Climate.Parameter.span(-1.0F, 1.0F), // temperature
                 Climate.Parameter.span(-1.0F, 1.0F), // humidity
-                Climate.Parameter.span(-1.05F, -0.65F), // continentalness
+                Climate.Parameter.span(-1.05F, -0.55F), // continentalness
                 Climate.Parameter.span(-1.0F, 1.0F), // erosion
                 Climate.Parameter.point(0.0F), // depth
                 Climate.Parameter.span(-1.0F, 1.0F), // weirdness

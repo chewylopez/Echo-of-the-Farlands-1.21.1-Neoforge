@@ -1,0 +1,10 @@
+{
+  "structures": [{ "structure": "echoofthefarlands:wall", "weight": 1 }],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 84720001,
+    "spacing": 1,
+    "separation": 0,
+    "spread_type": "linear"
+  }
+}

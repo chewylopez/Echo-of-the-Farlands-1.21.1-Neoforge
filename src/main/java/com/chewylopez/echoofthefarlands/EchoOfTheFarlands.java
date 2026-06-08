@@ -3,6 +3,7 @@ package com.chewylopez.echoofthefarlands;
 import com.chewylopez.echoofthefarlands.world.Features.ModFeatures;
 import com.chewylopez.echoofthefarlands.world.biome.ModBiomeSourceLists;
 import com.chewylopez.echoofthefarlands.world.density_function.ModDensityFunctions;
+import com.chewylopez.echoofthefarlands.world.structure.ModStructureTypes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -37,7 +38,7 @@ public class EchoOfTheFarlands
 
         ModFeatures.register(modEventBus);
         ModBiomeSourceLists.registerBiomeSourcePresets();
-
+        ModStructureTypes.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

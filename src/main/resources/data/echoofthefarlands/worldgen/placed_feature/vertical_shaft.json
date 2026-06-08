@@ -2,7 +2,7 @@
   "feature": "echoofthefarlands:vertical_shaft",
   "placement": [
     {
-      "type": "minecraft:rarity_filter", "chance": 100000
+      "type": "minecraft:rarity_filter", "chance": 10000
     },
     {
       "type": "minecraft:in_square"

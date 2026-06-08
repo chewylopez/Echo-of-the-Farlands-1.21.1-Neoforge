@@ -1,0 +1,20 @@
+{
+  "type": "echoofthefarlands:wall",
+  "biomes": "#echoofthefarlands:has_structure/wall",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "start_pool": "echoofthefarlands:wall/straight",
+  "size": 1,
+  "start_height": {
+    "type": "minecraft:trapezoid",
+    "min_inclusive":
+    {
+      "absolute": 60
+    },
+    "max_inclusive":
+    {
+      "absolute": 90
+    }
+  },
+  "spawn_overrides": {}
+}
