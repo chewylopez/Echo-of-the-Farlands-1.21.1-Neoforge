@@ -1,5 +1,8 @@
 package com.chewylopez.echoofthefarlands;
 
+import com.chewylopez.echoofthefarlands.block.ModBlocks;
+import com.chewylopez.echoofthefarlands.entity.block.ModBlockEntities;
+import com.chewylopez.echoofthefarlands.item.ModItems;
 import com.chewylopez.echoofthefarlands.world.Features.ModFeatures;
 import com.chewylopez.echoofthefarlands.world.biome.ModBiomeSourceLists;
 import com.chewylopez.echoofthefarlands.world.density_function.ModDensityFunctions;
@@ -36,9 +39,12 @@ public class EchoOfTheFarlands
                 () -> (minecraft, parent) -> new ConfigScreen(parent)
         );
 
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
         ModFeatures.register(modEventBus);
         ModBiomeSourceLists.registerBiomeSourcePresets();
         ModStructureTypes.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
