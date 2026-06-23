@@ -1,0 +1,12 @@
+{
+  "type": "echoofthefarlands:void",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "echoofthefarlands:void",
+      "lakes": false,
+      "features": true,
+      "layers": []
+    }
+  }
+}

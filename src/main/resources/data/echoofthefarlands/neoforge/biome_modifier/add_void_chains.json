@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "echoofthefarlands:void_chain",
+  "step": "underground_decoration"
+}

@@ -1,10 +1,14 @@
 package com.chewylopez.echoofthefarlands.event;
 
 import com.chewylopez.echoofthefarlands.EchoOfTheFarlands;
+import com.chewylopez.echoofthefarlands.block.blockAnimation.VoidLanternRenderer;
+import com.chewylopez.echoofthefarlands.entity.block.ModBlockEntities;
 import com.chewylopez.echoofthefarlands.world.biome.ModBiomes;
+import com.chewylopez.echoofthefarlands.world.dimension.VoidEffects;
 import net.minecraft.client.Camera;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.biome.Biome;
@@ -13,6 +17,8 @@ import net.minecraft.world.level.material.FogType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -108,6 +114,17 @@ public class ClientEvents {
     public static void onLevelUnload(LevelEvent.Unload event) {
         fogBlend = 0.0f;
         lastUpdateNanos = 0;
+    }
+
+    @SubscribeEvent
+    public static void onRegisterEffects(RegisterDimensionSpecialEffectsEvent event) {
+        event.register(ResourceLocation.fromNamespaceAndPath("echoofthefarlands", "void"),
+                new VoidEffects());
+    }
+
+    @SubscribeEvent
+    public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntities.VOID_LANTERN_ENTITY.get(), VoidLanternRenderer::new);
     }
 
 }

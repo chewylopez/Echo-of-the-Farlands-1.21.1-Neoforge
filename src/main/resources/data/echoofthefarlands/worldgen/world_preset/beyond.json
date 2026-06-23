@@ -31,6 +31,17 @@
         },
         "settings": "minecraft:nether"
       }
+    },
+    "echoofthefarlands:void": {
+      "type": "echoofthefarlands:void",
+      "generator": {
+        "type": "minecraft:noise",
+        "biome_source": {
+          "type": "minecraft:fixed",
+          "biome": "echoofthefarlands:void"
+        },
+        "settings": "echoofthefarlands:void"
+      }
     }
   }
 }

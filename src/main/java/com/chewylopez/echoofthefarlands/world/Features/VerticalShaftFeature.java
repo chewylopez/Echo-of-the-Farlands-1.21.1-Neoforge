@@ -12,6 +12,8 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 public class VerticalShaftFeature extends Feature<VerticalShaftConfig> {
 
+    private static final int[][] HORIZONTAL = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
     public VerticalShaftFeature(Codec<VerticalShaftConfig> codec) {
         super(codec);
     }
@@ -25,25 +27,23 @@ public class VerticalShaftFeature extends Feature<VerticalShaftConfig> {
 
         int baseRadius = Mth.nextInt(random, config.minRadius(), config.maxRadius());
         int topY = origin.getY();
-        int bottomY = level.getMinBuildHeight();   // ← all the way to the floor, through bedrock
+        int bottomY = level.getMinBuildHeight();
 
         BlockState air = Blocks.CAVE_AIR.defaultBlockState();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos wall = new BlockPos.MutableBlockPos();
 
-        // Meander state — shaft drifts slightly as it descends
         double centerX = origin.getX() + 0.5;
         double centerZ = origin.getZ() + 0.5;
         double driftX = 0.0;
         double driftZ = 0.0;
 
         for (int y = topY; y >= bottomY; y--) {
-            // Gentle random-walk drift, clamped so the shaft stays near its origin
             driftX = Mth.clamp(driftX + (random.nextDouble() - 0.5) * 0.3, -2.0, 2.0);
             driftZ = Mth.clamp(driftZ + (random.nextDouble() - 0.5) * 0.3, -2.0, 2.0);
             double cx = centerX + driftX;
             double cz = centerZ + driftZ;
 
-            // Smoothly varying radius (sine) plus a touch of per-layer randomness
             double layerRadius = baseRadius + Math.sin(y * 0.1) + (random.nextDouble() - 0.5) * 0.6;
             double rr = layerRadius * layerRadius;
             int reach = Mth.ceil(layerRadius) + 1;
@@ -58,10 +58,34 @@ public class VerticalShaftFeature extends Feature<VerticalShaftConfig> {
                     if (ddx * ddx + ddz * ddz > rr) continue;
                     mutable.set(x, y, z);
                     if (level.getBlockState(mutable).isAir()) continue;
-                    level.setBlock(mutable, air, 2);   // carves bedrock too — no skip
+                    level.setBlock(mutable, air, 2);
+                    sealLiquidNeighbors(level, x, y, z, cx, cz, rr, wall);
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * edge check for liquids and replace with stone
+     */
+    private void sealLiquidNeighbors(WorldGenLevel level, int x, int y, int z,
+                                     double cx, double cz, double rr,
+                                     BlockPos.MutableBlockPos wall) {
+        for (int[] d : HORIZONTAL) {
+            int nx = x + d[0];
+            int nz = z + d[1];
+            double ddx = (nx + 0.5) - cx;
+            double ddz = (nz + 0.5) - cz;
+            if (ddx * ddx + ddz * ddz <= rr) continue; // inside the shaft — will be carved, don't seal
+            wall.set(nx, y, nz);
+            if (level.getFluidState(wall).isSource()) {
+                level.setBlock(wall, sealant(y), 2);
+            }
+        }
+    }
+
+    private static BlockState sealant(int y) {
+        return y < 0 ? Blocks.DEEPSLATE.defaultBlockState() : Blocks.STONE.defaultBlockState();
     }
 }
