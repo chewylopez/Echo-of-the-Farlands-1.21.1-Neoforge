@@ -1,8 +1,11 @@
 package com.chewylopez.echoofthefarlands.mixin.client;
 
 import com.chewylopez.echoofthefarlands.Config;
-import com.chewylopez.echoofthefarlands.datagen.WorldFarlandsSettings;
+import com.chewylopez.echoofthefarlands.client.PresetLists;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.tabs.GridLayoutTab;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.screens.worldselection.CreateWorldScreen;
@@ -16,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(targets = "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen$WorldTab")
 public abstract class CreateWorldScreenMixin extends GridLayoutTab {
 
+    Font font = Minecraft.getInstance().font;
+
     public CreateWorldScreenMixin(Component title) {
         super(title);
     }
@@ -23,39 +28,29 @@ public abstract class CreateWorldScreenMixin extends GridLayoutTab {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addCustomButton(CreateWorldScreen parent, CallbackInfo ci) {
 
-        GridLayout layout = this.layout;
-
-        CycleButton<String> FarlandsPosition = CycleButton.<String>builder(value -> Component.literal(value))
-                .withValues("10000", "50000", "100000", "500000", "1000000", "original (12550823)", "Custom Config Value")
-                .create(0, 0, 150, 20, Component.literal("Farlands Location"), (btn, value) -> {
-                    Config.FARLANDS_LOCATION_WORLD = switch (value) {
-                        case "10000" -> 10000;
-                        case "50000" -> 50000;
-                        case "100000" -> 100000;
-                        case "500000" -> 500000;
-                        case "1000000" -> 1000000;
-                        case "original (12550823)" -> 12550823;
-                        case "Custom Config Value" -> Config.FARLANDS_LOCATION_CONFIG.get();
-                        default -> Config.FARLANDS_LOCATION_CONFIG.get();
-                    };
+        CycleButton<String> FarlandsPosition = CycleButton.<String>builder(Component::literal)
+                .withValues(PresetLists.getFarlandsDistances()).displayOnlyValue()
+                .create(0, 0, 150, 20, Component.literal("Farlands Position"), (btn, value) -> {
+                    Config.FARLANDS_LOCATION_WORLD = PresetLists.getDistanceCaseFromButton(value);
                     System.out.println("Farlands Position updated: " + Config.FARLANDS_LOCATION_WORLD);
                 });
 
-        CycleButton<String> FarlandsGenType = CycleButton.<String>builder(value -> Component.literal(value))
-                .withValues("Original Farlands (unscaled)", "Exponential", "Linear", "Sine Wave")
+        CycleButton<String> FarlandsGenType = CycleButton.<String>builder(Component::literal)
+                .withValues(PresetLists.getFarlandsGenTypes()).displayOnlyValue()
                 .create(0, 0, 150, 20, Component.literal("Gen Type"), (btn, value) -> {
-                    Config.FARLANDS_GEN_TYPE = switch (value) {
-                        case "Original (unscaled)" -> 0;
-                        case "Linear" -> 1;
-                        case "Exponential" -> 2;
-                        case "Sine Wave" -> 3;
-                        default -> 0;
-                    };
+                    Config.FARLANDS_GEN_TYPE = PresetLists.getGenTypeCaseFromButton(value);
                     System.out.println("Farlands Gen Type updated: " + Config.FARLANDS_GEN_TYPE);
                 });
 
-        layout.addChild(FarlandsPosition, 4, 0);
-        layout.addChild(FarlandsGenType, 4, 1);
+        this.layout.columnSpacing(10).rowSpacing(5);
+        this.layout.defaultCellSetting().alignVerticallyMiddle().alignHorizontallyLeft();
+        this.layout.addChild(new StringWidget(Component.literal("Farlands Location"), font), 3, 0);
+        this.layout.addChild(FarlandsPosition, 3, 1);
+
+        this.layout.addChild(new StringWidget(Component.literal("Gen Type"), font), 4, 0);
+        this.layout.addChild(FarlandsGenType, 4, 1);
+
+
     }
 
 }
