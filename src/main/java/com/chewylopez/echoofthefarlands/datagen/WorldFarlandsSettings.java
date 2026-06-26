@@ -12,6 +12,9 @@ public class WorldFarlandsSettings extends SavedData {
 
     private int FARLANDS_POSITION;
     private int FARLANDS_GEN_TYPE;
+    private boolean FARLANDS_WALL_TEXTURE_PATCH;
+    private boolean FARLANDS_LIQUID_FIX;
+    private boolean FARLANDS_BEDROCK_FIX;
 
     private boolean isNew = false;
 
@@ -27,6 +30,18 @@ public class WorldFarlandsSettings extends SavedData {
         return FARLANDS_GEN_TYPE;
     }
 
+    public boolean getFarlandsWallTexturePatch(){
+        return FARLANDS_WALL_TEXTURE_PATCH;
+    }
+
+    public boolean getFarlandsLiquidFix(){
+        return FARLANDS_LIQUID_FIX;
+    }
+
+    public boolean getFarlandsBedrockFix(){
+        return FARLANDS_BEDROCK_FIX;
+    }
+
     public void setFarlandsPosition(int val) {
         FARLANDS_POSITION = val;
         this.setDirty();
@@ -34,6 +49,21 @@ public class WorldFarlandsSettings extends SavedData {
 
     public void setFarlandsGenType(int val) {
         FARLANDS_GEN_TYPE = val;
+        this.setDirty();
+    }
+
+    public void setFarlandsWallTexturePatch(Boolean val) {
+        FARLANDS_WALL_TEXTURE_PATCH = val;
+        this.setDirty();
+    }
+
+    public void setFarlandsLiquidFix(Boolean val) {
+        FARLANDS_LIQUID_FIX = val;
+        this.setDirty();
+    }
+
+    public void setFarlandsBedrockFix(Boolean val) {
+        FARLANDS_BEDROCK_FIX = val;
         this.setDirty();
     }
 
@@ -45,6 +75,9 @@ public class WorldFarlandsSettings extends SavedData {
         WorldFarlandsSettings data = WorldFarlandsSettings.create();
         if (tag.contains("FarlandsPosition")) data.FARLANDS_POSITION = tag.getInt("FarlandsPosition");
         if (tag.contains("FarlandsGenType")) data.FARLANDS_GEN_TYPE = tag.getInt("FarlandsGenType");
+        if (tag.contains("FarlandsWallTexturePatch")) data.FARLANDS_WALL_TEXTURE_PATCH = tag.getBoolean("FarlandsWallTexturePatch");
+        if (tag.contains("FarlandsLiquidFix")) data.FARLANDS_LIQUID_FIX = tag.getBoolean("FarlandsLiquidFix");
+        if (tag.contains("FarlandsBedrockFix")) data.FARLANDS_BEDROCK_FIX = tag.getBoolean("FarlandsBedrockFix");
 
         data.isNew = false;
         return data;
@@ -54,6 +87,9 @@ public class WorldFarlandsSettings extends SavedData {
     public CompoundTag save(CompoundTag tag, HolderLookup.Provider registries) {
         tag.putInt("FarlandsPosition", FARLANDS_POSITION);
         tag.putInt("FarlandsGenType", FARLANDS_GEN_TYPE);
+        tag.putBoolean("FarlandsWallTexturePatch", FARLANDS_WALL_TEXTURE_PATCH);
+        tag.putBoolean("FarlandsLiquidFix", FARLANDS_LIQUID_FIX);
+        tag.putBoolean("FarlandsBedrockFix", FARLANDS_BEDROCK_FIX);
         return tag;
     }
 

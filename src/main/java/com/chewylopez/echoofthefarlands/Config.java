@@ -10,5 +10,8 @@ public class Config
     //set to defaults
     public static int FARLANDS_LOCATION_WORLD = 1000000;
     public static int FARLANDS_GEN_TYPE = 0;
+    public static boolean FARLANDS_WALL_TEXTURE_PATCH = true;
+    public static boolean FARLANDS_LIQUID_FIX = true;
+    public static boolean FARLANDS_BEDROCK_FIX = true;
 
 }

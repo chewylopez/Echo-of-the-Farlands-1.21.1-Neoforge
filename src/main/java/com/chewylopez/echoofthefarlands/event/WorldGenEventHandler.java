@@ -27,14 +27,23 @@ public class WorldGenEventHandler {
             if(settings.isNewWorld()){
                 settings.setFarlandsPosition(Config.FARLANDS_LOCATION_WORLD);
                 settings.setFarlandsGenType(Config.FARLANDS_GEN_TYPE);
+                settings.setFarlandsWallTexturePatch(Config.FARLANDS_WALL_TEXTURE_PATCH);
+                settings.setFarlandsLiquidFix(Config.FARLANDS_LIQUID_FIX);
+                settings.setFarlandsBedrockFix(Config.FARLANDS_BEDROCK_FIX);
 
-                System.out.println("Farlands Position: " + Config.FARLANDS_LOCATION_WORLD);
-                System.out.println("Farlands GenType: " + Config.FARLANDS_GEN_TYPE);
+                System.out.println("Farlands position: " + Config.FARLANDS_LOCATION_WORLD);
+                System.out.println("Farlands gen type: " + Config.FARLANDS_GEN_TYPE);
+                System.out.println("Farlands wall texture: " + Config.FARLANDS_WALL_TEXTURE_PATCH);
+                System.out.println("Farlands liquid fix: " + Config.FARLANDS_LIQUID_FIX);
+                System.out.println("Farlands bedrock fix: " + Config.FARLANDS_BEDROCK_FIX);
             }
 
             //every time on startup
             Config.FARLANDS_LOCATION_WORLD = settings.getFarlandsPosition();
             Config.FARLANDS_GEN_TYPE = settings.getFarlandsGenType();
+            Config.FARLANDS_WALL_TEXTURE_PATCH = settings.getFarlandsWallTexturePatch();
+            Config.FARLANDS_LIQUID_FIX = settings.getFarlandsLiquidFix();
+            Config.FARLANDS_BEDROCK_FIX = settings.getFarlandsBedrockFix();
             settings.setDirty();
         }
     }
