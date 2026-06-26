@@ -20,11 +20,14 @@ public class PresetLists {
 
     public static MenuPair[] buildGenTypes() {
         return new MenuPair[] {
-                new MenuPair("Default Peicewise", 0),
-                new MenuPair("Unscaled", 1),
-                new MenuPair("Exponential", 2),
-                new MenuPair("Linear", 3),
-                new MenuPair("Sine Wave", 4)
+                new MenuPair("Default Piecewise (static)", 0),
+                new MenuPair("Default Piecewise (proportional)", 1),
+                new MenuPair("Unscaled", 2),
+                new MenuPair("Exponential (static)", 3),
+                new MenuPair("Exponential (proportional)", 4),
+                new MenuPair("Linear", 5),
+                new MenuPair("Sine Wave", 6),
+                new MenuPair("Multi Trig Density Function", 7)
         };
 
     };
