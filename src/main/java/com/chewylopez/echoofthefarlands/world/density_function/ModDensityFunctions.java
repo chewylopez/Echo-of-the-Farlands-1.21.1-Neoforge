@@ -3,17 +3,21 @@ package com.chewylopez.echoofthefarlands.world.density_function;
 import com.chewylopez.echoofthefarlands.EchoOfTheFarlands;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.DensityFunction;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.registries.RegisterEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-@EventBusSubscriber(modid = EchoOfTheFarlands.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModDensityFunctions {
 
-    @SubscribeEvent
-    public static void register(RegisterEvent event) {
-        //event.register(Registries.DENSITY_FUNCTION_TYPE, helper -> {helper.register(ResourceLocation.fromNamespaceAndPath(EchoOfTheFarlands.MODID, "floating_island"), FloatingIslandDensity.CODEC);});
+    public static final DeferredRegister<MapCodec<? extends DensityFunction>> TYPES =
+            DeferredRegister.create(Registries.DENSITY_FUNCTION_TYPE, EchoOfTheFarlands.MODID);
+
+    public static final DeferredHolder<MapCodec<? extends DensityFunction>, MapCodec<FarlandsDensityFunction>>
+            DENSITY_TEST_FARLANDS = TYPES.register("farlands", () -> FarlandsDensityFunction.CODEC_MAP);
+
+    public static void register(IEventBus bus) {
+        TYPES.register(bus);
     }
+
 }

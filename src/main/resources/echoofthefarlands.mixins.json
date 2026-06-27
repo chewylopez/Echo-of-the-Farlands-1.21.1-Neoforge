@@ -8,6 +8,7 @@
     "client.ClientLevelDataMixin"
   ],
   "mixins": [
+    "noise.NoiseRouterMixin",
     "noise.NoiseChunkGeneratorMixin",
     "noise.PerlinNoiseMixin",
     "structures.MonumentBuildingMixin",
