@@ -16,7 +16,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("12550823", 12550823,
                         "original farlands"),
                 new MenuOptionsGrouping("Config Value (" + configValue + ")", configValue,
-                        "can be any integer, keep in mind that low values will break proportional scalings and high values beyond the world barrier will not be accessible.\n-NOTE- value below world height will generate Y-axis Farlands")};
+                        "can be any positive integer, keep in mind that low values will break proportional scalings and high values beyond the world barrier will not be accessible.\n-NOTE- value below world height will generate Y-axis Farlands")};
     }
 
     public static MenuOptionsGrouping[] buildGenTypes() {
@@ -41,22 +41,28 @@ public class PresetLists {
 
     public static MenuOptionsGrouping[] buildWallPatch(){
         return new MenuOptionsGrouping[] {
-                new MenuOptionsGrouping("ON", 0, "ENABLED:\nadds a 500 block buffer zone with random errors as texturing"),
-                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nadds a 500 block buffer zone with random errors as texturing"),
+                new MenuOptionsGrouping("ON", 0,
+                        "ENABLED:\nadds a 500 block buffer zone with random errors as texturing for the Farlands edge"),
+                new MenuOptionsGrouping("OFF", 1,
+                        "DISABLED:\nadds a 500 block buffer zone with random errors as texturing for the Farlands edge"),
         };
     }
 
     public static MenuOptionsGrouping[] buildFluidPatch(){
         return new MenuOptionsGrouping[] {
-                new MenuOptionsGrouping("ON", 0, "ENABLED:\nfixes DOUBLE_MAX overflow for water barriers"),
-                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nfixes DOUBLE_MAX overflow for water barriers"),
+                new MenuOptionsGrouping("ON", 0,
+                        "ENABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
+                new MenuOptionsGrouping("OFF", 1,
+                        "DISABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
         };
     }
 
     public static MenuOptionsGrouping[] buildBedrockPatch(){
         return new MenuOptionsGrouping[] {
-                new MenuOptionsGrouping("ON", 0, "ENABLED:\nhard restores bottom 5 blocks of dimension in Farlands"),
-                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nhard restores bottom 5 blocks of dimension in Farlands"),
+                new MenuOptionsGrouping("ON", 0,
+                        "ENABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
+                new MenuOptionsGrouping("OFF", 1,
+                        "DISABLED:\fforces bottom 5 blocks of dimension in Farlands to generate solid\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
         };
     }
 

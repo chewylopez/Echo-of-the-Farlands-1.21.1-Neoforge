@@ -31,13 +31,14 @@ public abstract class CreateWorldScreenMixin extends GridLayoutTab {
     private void addCustomButton(CreateWorldScreen parent, CallbackInfo ci) {
 
         Button openConfig = Button.builder(
-                Component.literal("Farlands Settings"),
+                Component.literal("Settings"),
                 b -> Minecraft.getInstance().setScreen(new WorldCreationFarlandsScreen(parent))
-        ).width(150).build();
+        ).width(100).build();
 
         this.layout.columnSpacing(10).rowSpacing(5);
         this.layout.defaultCellSetting().alignVerticallyMiddle().alignHorizontallyLeft();
         this.layout.addChild(new StringWidget(Component.literal("Farlands Options"), this.font), 3, 0);
+        this.layout.defaultCellSetting().alignVerticallyMiddle().alignHorizontallyRight();
         this.layout.addChild(openConfig, 3, 1);
     }
 }

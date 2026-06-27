@@ -62,7 +62,7 @@ public record FarlandsDensityFunction(DensityFunction inner) implements DensityF
         int bottomFull = p.bedrockFloor() + 64;
         int bottomFade = p.bedrockFloor() + 8;
         int topFull    = p.bedrockCeiling() - 96;
-        int topFade    = p.bedrockCeiling();
+        int topFade    = p.bedrockCeiling() - 64;
         double w = 1.0;
         if (y > topFull) {
             w = Math.min(w, Mth.clamp((topFade - y) / (double)(topFade - topFull), 0.0, 1.0));
@@ -99,11 +99,12 @@ public record FarlandsDensityFunction(DensityFunction inner) implements DensityF
     }
 
     private static double multiTrigDensity(double base, int x, int y, int z, double progress) {
-        double amplitude = progress * 0.001;
+        double amplitude = progress * 0.003;
 
         double a = Math.sin(x * 0.013 + z * 0.017);
         double b = Math.cos(x * 0.007 - z * 0.011);
         double c = Math.sin(y * 0.05 + x * 0.003);
+
         double chaos = (a + b + c) * (1.0 / 3.0);
 
         return base + chaos * amplitude;
