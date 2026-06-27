@@ -27,7 +27,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("Unscaled", 2,
                         "Unscaled noise value with no vanilla wrapping"),
                 new MenuOptionsGrouping("Exponential (static)", 3,
-                        "Noise value = INT_MAX^factor\nfactor = 1+(2*(distance/1m)"),
+                        "Noise value = INT_MAX^factor\nfactor = 1+(2*(distance/1m)\n-NOTE- x and z behave differently for this one, not really sure why"),
                 new MenuOptionsGrouping("Exponential (proportional)", 4,
                         "Exponential function:\nscaled to Farlands location\n(1m is same as static)"),
                 new MenuOptionsGrouping("Linear", 5,
