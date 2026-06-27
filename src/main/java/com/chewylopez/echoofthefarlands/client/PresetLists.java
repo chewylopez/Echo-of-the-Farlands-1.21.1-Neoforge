@@ -16,7 +16,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("12550823", 12550823,
                         "original farlands"),
                 new MenuOptionsGrouping("Config Value (" + configValue + ")", configValue,
-                        "can be any positive integer, keep in mind that low values will break proportional scalings and high values beyond the world barrier will not be accessible.\n-NOTE- value below world height will generate Y-axis Farlands")};
+                        "can be any positive integer, keep in mind that low values will break proportional scalings and high values beyond the world barrier will not be accessible.\n\n-NOTE- value below world height will generate Y-axis Farlands")};
     }
 
     public static MenuOptionsGrouping[] buildGenTypes() {
@@ -27,7 +27,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("Unscaled", 2,
                         "Unscaled noise value with no vanilla wrapping"),
                 new MenuOptionsGrouping("Exponential (static)", 3,
-                        "Noise value = INT_MAX^factor\nfactor = 1+(2*(distance/1m)\n-NOTE- x and z behave differently for this one, not really sure why"),
+                        "Noise value = INT_MAX^factor\nfactor = 1+(2*(distance/1m)\n\n-NOTE- x and z behave differently for this one, not really sure why"),
                 new MenuOptionsGrouping("Exponential (proportional)", 4,
                         "Exponential function:\nscaled to Farlands location\n(1m is same as static)"),
                 new MenuOptionsGrouping("Linear", 5,
@@ -35,7 +35,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("Sine Wave", 6,
                         "Noise value = \n2*sin(value)*(value + INT_MAX)"),
                 new MenuOptionsGrouping("Multi Trig Density Function", 7,
-                        "Unscaled + density function:\n = value + factor\nfactor = (1/3) *\n(sin(x * 0.013 + z * 0.017) +\ncos(x * 0.007 - z * 0.011) +\nsin(y * 0.05 + x * 0.003))")
+                        "Unscaled + density function\n= value + factor\nfactor = (1/3) *\n(sin(x * 0.013 + z * 0.017) +\ncos(x * 0.007 - z * 0.011) +\nsin(y * 0.05 + x * 0.003))")
         };
     };
 
@@ -51,18 +51,18 @@ public class PresetLists {
     public static MenuOptionsGrouping[] buildFluidPatch(){
         return new MenuOptionsGrouping[] {
                 new MenuOptionsGrouping("ON", 0,
-                        "ENABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
+                        "ENABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
                 new MenuOptionsGrouping("OFF", 1,
-                        "DISABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
+                        "DISABLED:\nfixes DOUBLE_MAX overflow for water barriers. will appear like floating islands of lakes and oceans\n\n-NOTE- this largely prevents liquid flowing lag when generating Farlands"),
         };
     }
 
     public static MenuOptionsGrouping[] buildBedrockPatch(){
         return new MenuOptionsGrouping[] {
                 new MenuOptionsGrouping("ON", 0,
-                        "ENABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
+                        "ENABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
                 new MenuOptionsGrouping("OFF", 1,
-                        "DISABLED:\fforces bottom 5 blocks of dimension in Farlands to generate solid\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
+                        "DISABLED:\fforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
         };
     }
 
