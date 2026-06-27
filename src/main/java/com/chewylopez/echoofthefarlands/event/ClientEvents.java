@@ -39,7 +39,6 @@ public class ClientEvents {
         Entity entity = camera.getEntity();
         if (entity == null || entity.level() == null) return;
 
-        // Don't apply any fog effect when not in water
         if (camera.getFluidInCamera() != FogType.WATER) {
             updateBlend(0.0f);
             return;
@@ -55,9 +54,6 @@ public class ClientEvents {
         updateBlend(target);
 
         if (fogBlend < 0.001f) return;
-
-        // Targets are for FULL effect (abyssal at full depth).
-        // The blend value scales between these and vanilla naturally.
         float targetNear = 0.5f;
         float targetFar = 8.0f;
 
