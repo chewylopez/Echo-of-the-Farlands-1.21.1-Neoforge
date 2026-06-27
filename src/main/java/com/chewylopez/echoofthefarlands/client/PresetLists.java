@@ -1,90 +1,114 @@
 package com.chewylopez.echoofthefarlands.client;
 
 import com.chewylopez.echoofthefarlands.Config;
-
-import java.util.Arrays;
-import java.util.List;
+import net.minecraft.network.chat.Component;
 
 public class PresetLists {
 
-    public static MenuPair[] buildDistances(){
+    public static MenuOptionsGrouping[] buildDistances(){
         int configValue = Config.FARLANDS_LOCATION_CONFIG.get();
-           return new MenuPair[] {new MenuPair("Default 1000000", 1000000),
-                new MenuPair("10000", 10000),
-                new MenuPair("50000", 50000),
-                new MenuPair("100000", 100000),
-                new MenuPair("500000", 500000),
-                new MenuPair("12550823", 12550823),
-                new MenuPair("Config Value (" + configValue + ")", configValue)};
+           return new MenuOptionsGrouping[] { new MenuOptionsGrouping("1000000", 1000000,
+                   "default value"),
+                new MenuOptionsGrouping("10000", 10000, ""),
+                new MenuOptionsGrouping("50000", 50000, ""),
+                new MenuOptionsGrouping("100000", 100000, ""),
+                new MenuOptionsGrouping("500000", 500000, ""),
+                new MenuOptionsGrouping("12550823", 12550823,
+                        "original farlands"),
+                new MenuOptionsGrouping("Config Value (" + configValue + ")", configValue,
+                        "can be any integer, keep in mind that low values will break proportional scalings and high values beyond the world barrier will not be accessible.\n-NOTE- value below world height will generate Y-axis Farlands")};
     }
 
-    public static MenuPair[] buildGenTypes() {
-        return new MenuPair[] {
-                new MenuPair("Default Piecewise (static)", 0),
-                new MenuPair("Default Piecewise (proportional)", 1),
-                new MenuPair("Unscaled", 2),
-                new MenuPair("Exponential (static)", 3),
-                new MenuPair("Exponential (proportional)", 4),
-                new MenuPair("Linear", 5),
-                new MenuPair("Sine Wave", 6),
-                new MenuPair("Multi Trig Density Function", 7)
+    public static MenuOptionsGrouping[] buildGenTypes() {
+        return new MenuOptionsGrouping[] { new MenuOptionsGrouping("Default Piecewise (static)", 0,
+                "(default) Piecewise function:\n0-500k (unscaled)\n500k-1m (linear)\n1m-1.5m (exponential)\n1.5m-4m (moat)\n4m+ (wrapped vanilla gen)"),
+                new MenuOptionsGrouping("Default Piecewise (proportional)", 1,
+                        "Piecewise function:\nscaled to Farlands location\n(1m is same as static)"),
+                new MenuOptionsGrouping("Unscaled", 2,
+                        "Unscaled noise value with no vanilla wrapping"),
+                new MenuOptionsGrouping("Exponential (static)", 3,
+                        "Noise value = INT_MAX^factor\nfactor = 1+(2*(distance/1m)"),
+                new MenuOptionsGrouping("Exponential (proportional)", 4,
+                        "Exponential function:\nscaled to Farlands location\n(1m is same as static)"),
+                new MenuOptionsGrouping("Linear", 5,
+                        "Noise value = value * 10^15\nproportional to wall distance"),
+                new MenuOptionsGrouping("Sine Wave", 6,
+                        "Noise value = \n2*sin(value)*(value + INT_MAX)"),
+                new MenuOptionsGrouping("Multi Trig Density Function", 7,
+                        "Unscaled + density function:\n = value + factor\nfactor = (1/3) *\n(sin(x * 0.013 + z * 0.017) +\ncos(x * 0.007 - z * 0.011) +\nsin(y * 0.05 + x * 0.003))")
         };
-
     };
 
-    public static String[] getFarlandsDistances() {
-        MenuPair[] Distances = buildDistances();
-        String[] returnable = new String[Distances.length];
-        for(int i = 0; i < Distances.length; i++){
-            returnable[i] = Distances[i].getText();
+    public static MenuOptionsGrouping[] buildWallPatch(){
+        return new MenuOptionsGrouping[] {
+                new MenuOptionsGrouping("ON", 0, "ENABLED:\nadds a 500 block buffer zone with random errors as texturing"),
+                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nadds a 500 block buffer zone with random errors as texturing"),
+        };
+    }
+
+    public static MenuOptionsGrouping[] buildFluidPatch(){
+        return new MenuOptionsGrouping[] {
+                new MenuOptionsGrouping("ON", 0, "ENABLED:\nfixes DOUBLE_MAX overflow for water barriers"),
+                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nfixes DOUBLE_MAX overflow for water barriers"),
+        };
+    }
+
+    public static MenuOptionsGrouping[] buildBedrockPatch(){
+        return new MenuOptionsGrouping[] {
+                new MenuOptionsGrouping("ON", 0, "ENABLED:\nhard restores bottom 5 blocks of dimension in Farlands"),
+                new MenuOptionsGrouping("OFF", 1, "DISABLED:\nhard restores bottom 5 blocks of dimension in Farlands"),
+        };
+    }
+
+    public static String[] getTextFromGroupArray(MenuOptionsGrouping[] items) {
+        MenuOptionsGrouping[] group = items;
+        String[] returnable = new String[group.length];
+        for(int i = 0; i < group.length; i++){
+            returnable[i] = group[i].getText();
         }
         return returnable;
     }
 
-    public static String[] getFarlandsGenTypes() {
-        MenuPair[] GenTypes = buildGenTypes();
-        String[] returnable = new String[GenTypes.length];
-        for(int i = 0; i < GenTypes.length; i++){
-            returnable[i] = GenTypes[i].getText();
-        }
-        return returnable;
-    }
-
-    public static int getDistanceCaseFromButton(String value){
-        MenuPair[] Distances = buildDistances();
-        int returnable = 1000000;
-        for(int i = 0; i < Distances.length; i++) {
-            if(Distances[i].getText().equals(value)){
-                returnable = Distances[i].getValue();
-            }
-        }
-        return returnable;
-    }
-
-    public static int getGenTypeCaseFromButton(String value){
-        MenuPair[] GenTypes = buildGenTypes();
+    public static int getIntsFromButton(String value, MenuOptionsGrouping[] items){
+        MenuOptionsGrouping[] group = items;
         int returnable = 0;
-        for(int i = 0; i < GenTypes.length; i++) {
-            if(GenTypes[i].getText().equals(value)){
-                returnable = GenTypes[i].getValue();
+        for(int i = 0; i < group.length; i++) {
+            if(group[i].getText().equals(value)){
+                returnable = group[i].getValue();
             }
         }
         return returnable;
     }
 
+    public static boolean getBooleanOptionsFromButton(String value, MenuOptionsGrouping[] items){
+        MenuOptionsGrouping[] basic = items;
+        for(int i = 0; i < basic.length; i++) {
+            if(basic[i].getText().equals(value)){
+                if(basic[i].getValue() == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Component getTooltipsFromGroupArray(String value, MenuOptionsGrouping[] items) {
+        for (MenuOptionsGrouping p : items) {
+            if (p.getText().equals(value)) {
+                return Component.literal(p.getTooltip());
+            }
+        }
+        return Component.empty();
+    }
+
+    public static String getTextFromIntValue(int value, MenuOptionsGrouping[] items){
+        for (MenuOptionsGrouping p : items) {
+            if (p.getValue() == value) {
+                return p.getText();
+            }
+        }
+        return items.length > 0 ? items[0].getText() : "";
+    }
+
 }
 
-class MenuPair {
-    public String text;
-    public int val;
-    MenuPair(String button_text, int value){
-        text = button_text;
-        val = value;
-    }
-    public String getText() {
-        return text;
-    }
-    public int getValue() {
-        return val;
-    }
-}
