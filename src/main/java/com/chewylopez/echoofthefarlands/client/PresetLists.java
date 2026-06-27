@@ -62,7 +62,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("ON", 0,
                         "ENABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
                 new MenuOptionsGrouping("OFF", 1,
-                        "DISABLED:\fforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
+                        "DISABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
         };
     }
 
