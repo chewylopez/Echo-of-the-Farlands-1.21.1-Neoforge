@@ -42,12 +42,12 @@ public class PerlinNoiseMixin {
 
     @Unique
     private static double getFarlandsWallTextureBuffer(){
-        return Config.FARLANDS_WALL_TEXTURE_PATCH ? FARLANDS_WALL_DECORATIONS_BUFFER : 0;
+        return Config.FARLANDS_WALL_TEXTURE_PATCH.get() ? FARLANDS_WALL_DECORATIONS_BUFFER : 0;
     }
 
     @Unique
     private static int getFarlandsGenType(){
-        return Config.FARLANDS_GEN_TYPE;
+        return Config.FARLANDS_GEN_TYPE.get();
     }
 
     @Unique
@@ -57,7 +57,7 @@ public class PerlinNoiseMixin {
 
     @Unique
     private static double getFarlandsLocation(){
-        return Config.FARLANDS_LOCATION_WORLD;
+        return Config.FARLANDS_LOCATION_WORLD.get();
     }
 
     @Unique

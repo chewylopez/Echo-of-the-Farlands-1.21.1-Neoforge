@@ -14,11 +14,11 @@ public record FarlandsDensityFunction(DensityFunction inner) implements DensityF
     public static final KeyDispatchDataCodec<FarlandsDensityFunction> CODEC = new KeyDispatchDataCodec<>(CODEC_MAP);
 
     private static boolean getAquiferFix() {
-        return Config.FARLANDS_LIQUID_FIX;
+        return Config.FARLANDS_LIQUID_FIX.get();
     }
 
     private static boolean getBedrockFix() {
-        return Config.FARLANDS_BEDROCK_FIX;
+        return Config.FARLANDS_BEDROCK_FIX.get();
     }
 
     @Override
@@ -42,7 +42,7 @@ public record FarlandsDensityFunction(DensityFunction inner) implements DensityF
         }
 
         double radius = Math.max(Math.abs(wx), Math.abs(wz));
-        double threshold = Config.FARLANDS_LOCATION_WORLD;
+        double threshold = Config.FARLANDS_LOCATION_WORLD.get();
         double progress = radius - threshold;
         double farlands = base;
 
@@ -50,7 +50,7 @@ public record FarlandsDensityFunction(DensityFunction inner) implements DensityF
             return base;
         }
 
-        if (Config.FARLANDS_GEN_TYPE == 7) {
+        if (Config.FARLANDS_GEN_TYPE.get() == 7) {
             farlands = multiTrigDensity(base, wx, wy, wz, progress);
         }
 

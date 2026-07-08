@@ -25,11 +25,11 @@ public class WorldGenEventHandler {
             WorldFarlandsSettings settings = WorldFarlandsSettings.getSettings(level);
 
             if(settings.isNewWorld()){
-                settings.setFarlandsPosition(Config.FARLANDS_LOCATION_WORLD);
-                settings.setFarlandsGenType(Config.FARLANDS_GEN_TYPE);
-                settings.setFarlandsWallTexturePatch(Config.FARLANDS_WALL_TEXTURE_PATCH);
-                settings.setFarlandsLiquidFix(Config.FARLANDS_LIQUID_FIX);
-                settings.setFarlandsBedrockFix(Config.FARLANDS_BEDROCK_FIX);
+                settings.setFarlandsPosition(Config.FARLANDS_LOCATION_WORLD.get());
+                settings.setFarlandsGenType(Config.FARLANDS_GEN_TYPE.get());
+                settings.setFarlandsWallTexturePatch(Config.FARLANDS_WALL_TEXTURE_PATCH.get());
+                settings.setFarlandsLiquidFix(Config.FARLANDS_LIQUID_FIX.get());
+                settings.setFarlandsBedrockFix(Config.FARLANDS_BEDROCK_FIX.get());
 
                 System.out.println("Farlands position: " + Config.FARLANDS_LOCATION_WORLD);
                 System.out.println("Farlands gen type: " + Config.FARLANDS_GEN_TYPE);
@@ -39,11 +39,11 @@ public class WorldGenEventHandler {
             }
 
             //every time on startup
-            Config.FARLANDS_LOCATION_WORLD = settings.getFarlandsPosition();
-            Config.FARLANDS_GEN_TYPE = settings.getFarlandsGenType();
-            Config.FARLANDS_WALL_TEXTURE_PATCH = settings.getFarlandsWallTexturePatch();
-            Config.FARLANDS_LIQUID_FIX = settings.getFarlandsLiquidFix();
-            Config.FARLANDS_BEDROCK_FIX = settings.getFarlandsBedrockFix();
+            Config.FARLANDS_LOCATION_WORLD.set(settings.getFarlandsPosition());
+            Config.FARLANDS_GEN_TYPE.set(settings.getFarlandsGenType());
+            Config.FARLANDS_WALL_TEXTURE_PATCH.set(settings.getFarlandsWallTexturePatch());
+            Config.FARLANDS_LIQUID_FIX.set(settings.getFarlandsLiquidFix());
+            Config.FARLANDS_BEDROCK_FIX.set(settings.getFarlandsBedrockFix());
             settings.setDirty();
         }
     }

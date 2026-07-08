@@ -56,12 +56,12 @@ public class NoiseChunkGeneratorMixin {
 
     @Unique
     private static int getFarlandsGenType(){
-        return Config.FARLANDS_GEN_TYPE;
+        return Config.FARLANDS_GEN_TYPE.get();
     }
 
     @Unique
     private static double getFarlandsLocation(){
-        return Config.FARLANDS_LOCATION_WORLD;
+        return Config.FARLANDS_LOCATION_WORLD.get();
     }
 
     @Shadow

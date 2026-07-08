@@ -32,37 +32,37 @@ public class WorldCreationFarlandsScreen extends Screen {
         MenuOptionsGrouping[] bedrockPatch = PresetLists.buildBedrockPatch();
 
         CycleButton<String> farlandsPosition = buildCycle(positions,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_LOCATION_WORLD, positions),
+                PresetLists.getTextFromIntValue(Config.FARLANDS_LOCATION_WORLD.get(), positions),
                 "Farlands Position", (btn, value) -> {
-                    Config.FARLANDS_LOCATION_WORLD = PresetLists.getIntsFromButton(value, positions);
+                    Config.FARLANDS_LOCATION_WORLD.set(PresetLists.getIntsFromButton(value, positions));
                     System.out.println("Farlands Position updated: " + Config.FARLANDS_LOCATION_WORLD);
                 });
 
         CycleButton<String> farlandsGenType = buildCycle(genTypes,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_GEN_TYPE, genTypes),
+                PresetLists.getTextFromIntValue(Config.FARLANDS_GEN_TYPE.get(), genTypes),
                 "Gen Type", (btn, value) -> {
-                    Config.FARLANDS_GEN_TYPE = PresetLists.getIntsFromButton(value, genTypes);
+                    Config.FARLANDS_GEN_TYPE.set(PresetLists.getIntsFromButton(value, genTypes));
                     System.out.println("Farlands Gen Type updated: " + Config.FARLANDS_GEN_TYPE);
                 });
 
         CycleButton<String> farlandsWallPatch = buildCycle(wallPatch,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_WALL_TEXTURE_PATCH ? 0 : 1, wallPatch),
+                PresetLists.getTextFromIntValue(Config.FARLANDS_WALL_TEXTURE_PATCH.get() ? 0 : 1, wallPatch),
                 "Wall Patch", (btn, value) -> {
-                    Config.FARLANDS_WALL_TEXTURE_PATCH = PresetLists.getBooleanOptionsFromButton(value, wallPatch);
+                    Config.FARLANDS_WALL_TEXTURE_PATCH.set(PresetLists.getBooleanOptionsFromButton(value, wallPatch));
                     System.out.println("Farlands wall patch updated: " + Config.FARLANDS_WALL_TEXTURE_PATCH);
                 });
 
         CycleButton<String> farlandsFluidPatch = buildCycle(fluidPatch,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_LIQUID_FIX ? 0 : 1, fluidPatch),
+                PresetLists.getTextFromIntValue(Config.FARLANDS_LIQUID_FIX.get() ? 0 : 1, fluidPatch),
                 "Fluid Patch", (btn, value) -> {
-                    Config.FARLANDS_LIQUID_FIX = PresetLists.getBooleanOptionsFromButton(value, fluidPatch);
+                    Config.FARLANDS_LIQUID_FIX.set(PresetLists.getBooleanOptionsFromButton(value, fluidPatch));
                     System.out.println("Farlands fluid patch updated: " + Config.FARLANDS_LIQUID_FIX);
                 });
 
         CycleButton<String> farlandsBedrockPatch = buildCycle(bedrockPatch,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_BEDROCK_FIX ? 0 : 1, bedrockPatch),
+                PresetLists.getTextFromIntValue(Config.FARLANDS_BEDROCK_FIX.get() ? 0 : 1, bedrockPatch),
                 "Bedrock Patch", (btn, value) -> {
-                    Config.FARLANDS_BEDROCK_FIX = PresetLists.getBooleanOptionsFromButton(value, bedrockPatch);
+                    Config.FARLANDS_BEDROCK_FIX.set(PresetLists.getBooleanOptionsFromButton(value, bedrockPatch));
                     System.out.println("Farlands bedrock patch updated: " + Config.FARLANDS_BEDROCK_FIX);
                 });
 

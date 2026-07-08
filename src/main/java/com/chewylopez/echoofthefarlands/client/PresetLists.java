@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 public class PresetLists {
 
     public static MenuOptionsGrouping[] buildDistances(){
-        int configValue = Config.FARLANDS_LOCATION_CONFIG.get();
+        int configValue = Config.FARLANDS_LOCATION_CUSTOM.get();
            return new MenuOptionsGrouping[] { new MenuOptionsGrouping("1000000", 1000000,
                    "default value"),
                 new MenuOptionsGrouping("10000", 10000, ""),
