@@ -25,11 +25,12 @@ public class WorldCreationFarlandsScreen extends Screen {
     @Override
     protected void init() {
 
-        MenuOptionsGrouping[] positions    = PresetLists.buildDistances();
-        MenuOptionsGrouping[] genTypes     = PresetLists.buildGenTypes();
-        MenuOptionsGrouping[] wallPatch    = PresetLists.buildWallPatch();
-        MenuOptionsGrouping[] fluidPatch   = PresetLists.buildFluidPatch();
+        MenuOptionsGrouping[] positions = PresetLists.buildDistances();
+        MenuOptionsGrouping[] genTypes = PresetLists.buildGenTypes();
+        MenuOptionsGrouping[] wallPatch = PresetLists.buildWallPatch();
+        MenuOptionsGrouping[] fluidPatch = PresetLists.buildFluidPatch();
         MenuOptionsGrouping[] bedrockPatch = PresetLists.buildBedrockPatch();
+        MenuOptionsGrouping[] wallGen = PresetLists.buildWalls();
 
         CycleButton<String> farlandsPosition = buildCycle(positions,
                 PresetLists.getTextFromIntValue(Config.FARLANDS_LOCATION_WORLD.get(), positions),
@@ -66,6 +67,14 @@ public class WorldCreationFarlandsScreen extends Screen {
                     System.out.println("Farlands bedrock patch updated: " + Config.FARLANDS_BEDROCK_FIX);
                 });
 
+        CycleButton<String> farlandsWalls = buildCycle(wallGen,
+                PresetLists.getTextFromIntValue(Config.FARLANDS_BEDROCK_FIX.get() ? 0 : 1, wallGen),
+                "Bedrock Patch", (btn, value) -> {
+                    Config.FARLANDS_BEDROCK_FIX.set(PresetLists.getBooleanOptionsFromButton(value, wallGen));
+                    System.out.println("Farlands bedrock patch updated: " + Config.FARLANDS_BEDROCK_FIX);
+                });
+
+
         // --- layout ---
         GridLayout grid = new GridLayout();
         grid.columnSpacing(10).rowSpacing(5);
@@ -88,6 +97,9 @@ public class WorldCreationFarlandsScreen extends Screen {
 
         grid.addChild(new StringWidget(Component.literal("Bedrock Floor Patch"), this.font), row, 0, labelCell);
         grid.addChild(farlandsBedrockPatch, row++, 1, buttonCell);
+
+        grid.addChild(new StringWidget(Component.literal("Wall Structures Gen"), this.font), row, 0, labelCell);
+        grid.addChild(farlandsWalls, row++, 1, buttonCell);
 
         grid.arrangeElements();
         // center the grid in the upper area, leaving room for the Done button

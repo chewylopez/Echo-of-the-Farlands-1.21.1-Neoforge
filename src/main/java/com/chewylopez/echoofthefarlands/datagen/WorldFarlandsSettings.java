@@ -15,6 +15,7 @@ public class WorldFarlandsSettings extends SavedData {
     private boolean FARLANDS_WALL_TEXTURE_PATCH;
     private boolean FARLANDS_LIQUID_FIX;
     private boolean FARLANDS_BEDROCK_FIX;
+    private boolean WALL_STRUCTURES_GENERATION;
 
     private boolean isNew = false;
 
@@ -42,6 +43,10 @@ public class WorldFarlandsSettings extends SavedData {
         return FARLANDS_BEDROCK_FIX;
     }
 
+    public boolean getWallStructuresGen(){
+        return WALL_STRUCTURES_GENERATION;
+    }
+
     public void setFarlandsPosition(int val) {
         FARLANDS_POSITION = val;
         this.setDirty();
@@ -67,6 +72,11 @@ public class WorldFarlandsSettings extends SavedData {
         this.setDirty();
     }
 
+    public void setWallStructuresGen(Boolean val) {
+        WALL_STRUCTURES_GENERATION = val;
+        this.setDirty();
+    }
+
     public static WorldFarlandsSettings create() {
         return new WorldFarlandsSettings();
     }
@@ -78,6 +88,7 @@ public class WorldFarlandsSettings extends SavedData {
         if (tag.contains("FarlandsWallTexturePatch")) data.FARLANDS_WALL_TEXTURE_PATCH = tag.getBoolean("FarlandsWallTexturePatch");
         if (tag.contains("FarlandsLiquidFix")) data.FARLANDS_LIQUID_FIX = tag.getBoolean("FarlandsLiquidFix");
         if (tag.contains("FarlandsBedrockFix")) data.FARLANDS_BEDROCK_FIX = tag.getBoolean("FarlandsBedrockFix");
+        if (tag.contains("WallStructuresGen")) data.WALL_STRUCTURES_GENERATION = tag.getBoolean("WallStructuresGen");
 
         data.isNew = false;
         return data;
@@ -90,6 +101,7 @@ public class WorldFarlandsSettings extends SavedData {
         tag.putBoolean("FarlandsWallTexturePatch", FARLANDS_WALL_TEXTURE_PATCH);
         tag.putBoolean("FarlandsLiquidFix", FARLANDS_LIQUID_FIX);
         tag.putBoolean("FarlandsBedrockFix", FARLANDS_BEDROCK_FIX);
+        tag.putBoolean("WallStructuresGen", WALL_STRUCTURES_GENERATION);
         return tag;
     }
 

@@ -30,12 +30,14 @@ public class WorldGenEventHandler {
                 settings.setFarlandsWallTexturePatch(Config.FARLANDS_WALL_TEXTURE_PATCH.get());
                 settings.setFarlandsLiquidFix(Config.FARLANDS_LIQUID_FIX.get());
                 settings.setFarlandsBedrockFix(Config.FARLANDS_BEDROCK_FIX.get());
+                settings.setWallStructuresGen(Config.WALL_STRUCTURES_GENERATION.get());
 
                 System.out.println("Farlands position: " + Config.FARLANDS_LOCATION_WORLD);
                 System.out.println("Farlands gen type: " + Config.FARLANDS_GEN_TYPE);
                 System.out.println("Farlands wall texture: " + Config.FARLANDS_WALL_TEXTURE_PATCH);
                 System.out.println("Farlands liquid fix: " + Config.FARLANDS_LIQUID_FIX);
                 System.out.println("Farlands bedrock fix: " + Config.FARLANDS_BEDROCK_FIX);
+                System.out.println("Wall Generation: " + Config.WALL_STRUCTURES_GENERATION);
             }
 
             //every time on startup
@@ -44,6 +46,7 @@ public class WorldGenEventHandler {
             Config.FARLANDS_WALL_TEXTURE_PATCH.set(settings.getFarlandsWallTexturePatch());
             Config.FARLANDS_LIQUID_FIX.set(settings.getFarlandsLiquidFix());
             Config.FARLANDS_BEDROCK_FIX.set(settings.getFarlandsBedrockFix());
+            Config.WALL_STRUCTURES_GENERATION.set(settings.getWallStructuresGen());
             settings.setDirty();
         }
     }

@@ -31,7 +31,7 @@ public class PresetLists {
                 new MenuOptionsGrouping("Exponential (proportional)", 4,
                         "Exponential function:\nscaled to Farlands location\n(1m is same as static)"),
                 new MenuOptionsGrouping("Linear", 5,
-                        "Noise value = value * 10^15\nproportional to wall distance"),
+                        "Noise value = value * 10^15\nproportional to wall distance with sheer ending wall at:\ndistance * 1344.45"),
                 new MenuOptionsGrouping("Sine Wave", 6,
                         "Noise value = \n2*sin(value)*(value + INT_MAX)"),
                 new MenuOptionsGrouping("Multi Trig Density Function", 7,
@@ -63,6 +63,15 @@ public class PresetLists {
                         "ENABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
                 new MenuOptionsGrouping("OFF", 1,
                         "DISABLED:\nforces bottom 5 blocks of dimension in Farlands to generate solid\n\n-NOTE- preserves void roof features and prevents liquids from flowing into void"),
+        };
+    }
+
+    public static MenuOptionsGrouping[] buildWalls(){
+        return new MenuOptionsGrouping[] {
+                new MenuOptionsGrouping("ON", 0,
+                        "ENABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands"),
+                new MenuOptionsGrouping("OFF", 1,
+                        "DISABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands"),
         };
     }
 

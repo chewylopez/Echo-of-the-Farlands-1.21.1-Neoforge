@@ -1,5 +1,6 @@
 package com.chewylopez.echoofthefarlands.world.structure;
 
+import com.chewylopez.echoofthefarlands.Config;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -7,14 +8,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pools.*;
-import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 
 import java.util.Optional;
@@ -28,9 +26,9 @@ public class WallStructure extends Structure {
                     HeightProvider.CODEC.fieldOf("start_height").forGetter(s -> s.startHeight)
             ).apply(inst, WallStructure::new));
 
-    private final Holder<StructureTemplatePool> startPool;
-    private final int size;
-    private final HeightProvider startHeight;
+    final Holder<StructureTemplatePool> startPool;
+    final int size;
+    final HeightProvider startHeight;
 
     public WallStructure(StructureSettings s, Holder<StructureTemplatePool> p, int size, HeightProvider h) {
         super(s);
@@ -39,10 +37,10 @@ public class WallStructure extends Structure {
         this.startHeight = h;
     }
 
-    private static final int WALL_COORD = 10000;
-
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext ctx) {
+
+        int distance = getDistance();
 
         ChunkPos chunk = ctx.chunkPos();
 
@@ -50,13 +48,14 @@ public class WallStructure extends Structure {
         int maxX = chunk.getMaxBlockX();
         int minZ = chunk.getMinBlockZ();
         int maxZ = chunk.getMaxBlockZ();
+        int y = 63;
 
-        boolean onXWall = (minX <= WALL_COORD  && WALL_COORD  <= maxX) || (minX <= -WALL_COORD && -WALL_COORD <= maxX);
-        boolean onZWall = (minZ <= WALL_COORD  && WALL_COORD  <= maxZ) || (minZ <= -WALL_COORD && -WALL_COORD <= maxZ);
+        boolean onXWall = (minX <= distance && distance <= maxX) || (minX <= -distance && -distance <= maxX);
+        boolean onZWall = (minZ <= distance && distance <= maxZ) || (minZ <= -distance && -distance <= maxZ);
 
 // Inside the 20000×20000 square
-        boolean insideSquareZ = maxZ >= -WALL_COORD && minZ <= WALL_COORD;
-        boolean insideSquareX = maxX >= -WALL_COORD && minX <= WALL_COORD;
+        boolean insideSquareZ = maxZ >= -distance && minZ <= distance;
+        boolean insideSquareX = maxX >= -distance && minX <= distance;
         onXWall = onXWall && insideSquareZ;
         onZWall = onZWall && insideSquareX;
 
@@ -65,21 +64,7 @@ public class WallStructure extends Structure {
 
         Rotation rot = onXWall ? Rotation.NONE : Rotation.CLOCKWISE_90;
 
-        int x = chunk.getMinBlockX();
-        int z = chunk.getMinBlockZ();
-
-        int y = 63;
-                /*
-                Math.min(Math.min(
-                        ctx.chunkGenerator().getFirstFreeHeight(x, z, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState()),
-                        ctx.chunkGenerator().getFirstFreeHeight(x + 15, z, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState())
-                ), Math.min(
-                        ctx.chunkGenerator().getFirstFreeHeight(x,      z + 15, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState()),
-                        ctx.chunkGenerator().getFirstFreeHeight(x + 15, z + 15, Heightmap.Types.WORLD_SURFACE_WG, ctx.heightAccessor(), ctx.randomState())));
-
-                 */
-
-        BlockPos pos = new BlockPos(x, y, z);
+        BlockPos pos = new BlockPos(minX, y, minZ);
 
         return Optional.of(new GenerationStub(pos, builder -> {
             StructureTemplatePool pool = startPool.value();
@@ -98,5 +83,18 @@ public class WallStructure extends Structure {
             builder.addPiece(piece);
         }));
     }
-    @Override public StructureType<?> type() { return ModStructureTypes.WALL_STRUCTURE_TYPE.get(); }
+
+    @Override
+    public StructureType<?> type() {
+        return null;
+    }
+
+    protected int getDistance(){
+        return 10000;
+    }
+
+    public double getFarlandsDistance(){
+        return Config.FARLANDS_LOCATION_WORLD.get();
+    }
+
 }
