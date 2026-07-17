@@ -1,5 +1,5 @@
 {
-  "name": "echoofthefarlands:wall/straight",
+  "name": "echoofthefarlands:wall_outer/straight",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element":
       {
         "element_type": "minecraft:single_pool_element",
-        "location": "echoofthefarlands:wall/straight_a",
+        "location": "echoofthefarlands:wall_outer/straight_a",
         "processors": "minecraft:empty",
         "projection": "rigid"
       }

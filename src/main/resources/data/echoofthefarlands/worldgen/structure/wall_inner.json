@@ -1,9 +1,9 @@
 {
-  "type": "echoofthefarlands:wall",
-  "biomes": "#echoofthefarlands:has_structure/wall",
+  "type": "echoofthefarlands:wall_inner",
+  "biomes": "#echoofthefarlands:has_structure/wall_inner",
   "step": "surface_structures",
   "terrain_adaptation": "beard_thin",
-  "start_pool": "echoofthefarlands:wall/straight",
+  "start_pool": "echoofthefarlands:wall_inner/straight",
   "size": 1,
   "start_height": {
     "type": "minecraft:trapezoid",
