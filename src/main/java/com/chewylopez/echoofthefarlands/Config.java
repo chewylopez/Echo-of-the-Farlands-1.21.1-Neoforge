@@ -26,7 +26,7 @@ public class Config
     public static ModConfigSpec.BooleanValue FARLANDS_BEDROCK_FIX =
             BUILDER.comment("\nFARLANDS BEDROCK FIX").define("farlandsBedrockFix", true);
     public static ModConfigSpec.BooleanValue WALL_STRUCTURES_GENERATION =
-            BUILDER.comment("\nWALL STRUCTURES GENERATION").define("wallStructuresGeneration", true);
+            BUILDER.comment("\nWALL STRUCTURES GENERATION").define("wallStructuresGeneration", false);
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
