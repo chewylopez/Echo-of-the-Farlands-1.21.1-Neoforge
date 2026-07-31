@@ -98,15 +98,13 @@ public class WorldCreationFarlandsScreen extends Screen {
         grid.addChild(new StringWidget(Component.literal("Bedrock Floor Patch"), this.font), row, 0, labelCell);
         grid.addChild(farlandsBedrockPatch, row++, 1, buttonCell);
 
-        grid.addChild(new StringWidget(Component.literal("Wall Structures Gen"), this.font), row, 0, labelCell);
+        grid.addChild(new StringWidget(Component.literal("Wall Structures Gen (WIP)"), this.font), row, 0, labelCell);
         grid.addChild(farlandsWalls, row++, 1, buttonCell);
 
         grid.arrangeElements();
-        // center the grid in the upper area, leaving room for the Done button
         FrameLayout.centerInRectangle(grid, 0, 0, this.width, this.height - 40);
         grid.visitWidgets(this::addRenderableWidget);
 
-        // Done button
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, b -> this.onClose())
                 .bounds(this.width / 2 - 100, this.height - 28, 200, 20)
                 .build());

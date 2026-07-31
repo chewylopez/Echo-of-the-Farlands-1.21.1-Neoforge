@@ -40,7 +40,7 @@ public class WorldGenEventHandler {
                 System.out.println("Wall Generation: " + Config.WALL_STRUCTURES_GENERATION);
             }
 
-            //every time on startup
+            //every time on world open
             Config.FARLANDS_LOCATION_WORLD.set(settings.getFarlandsPosition());
             Config.FARLANDS_GEN_TYPE.set(settings.getFarlandsGenType());
             Config.FARLANDS_WALL_TEXTURE_PATCH.set(settings.getFarlandsWallTexturePatch());

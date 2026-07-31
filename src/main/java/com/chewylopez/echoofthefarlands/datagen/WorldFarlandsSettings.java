@@ -1,6 +1,5 @@
 package com.chewylopez.echoofthefarlands.datagen;
 
-import com.chewylopez.echoofthefarlands.Config;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -57,22 +56,22 @@ public class WorldFarlandsSettings extends SavedData {
         this.setDirty();
     }
 
-    public void setFarlandsWallTexturePatch(Boolean val) {
+    public void setFarlandsWallTexturePatch(boolean val) {
         FARLANDS_WALL_TEXTURE_PATCH = val;
         this.setDirty();
     }
 
-    public void setFarlandsLiquidFix(Boolean val) {
+    public void setFarlandsLiquidFix(boolean val) {
         FARLANDS_LIQUID_FIX = val;
         this.setDirty();
     }
 
-    public void setFarlandsBedrockFix(Boolean val) {
+    public void setFarlandsBedrockFix(boolean val) {
         FARLANDS_BEDROCK_FIX = val;
         this.setDirty();
     }
 
-    public void setWallStructuresGen(Boolean val) {
+    public void setWallStructuresGen(boolean val) {
         WALL_STRUCTURES_GENERATION = val;
         this.setDirty();
     }

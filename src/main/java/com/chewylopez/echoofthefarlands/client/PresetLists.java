@@ -69,9 +69,9 @@ public class PresetLists {
     public static MenuOptionsGrouping[] buildWalls(){
         return new MenuOptionsGrouping[] {
                 new MenuOptionsGrouping("ON", 0,
-                        "ENABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands"),
+                        "ENABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands\n\n-NOTE- Only generates with placeholder segments for placement testing"),
                 new MenuOptionsGrouping("OFF", 1,
-                        "DISABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands"),
+                        "DISABLED:\nGenerates 2 sets ancient walls in the world that mirror the farlands\n\n-NOTE- Only generates with placeholder segments for placement testing"),
         };
     }
 

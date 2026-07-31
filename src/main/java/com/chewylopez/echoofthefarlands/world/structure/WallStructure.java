@@ -40,6 +40,8 @@ public class WallStructure extends Structure {
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext ctx) {
 
+        if (!getWallGen()) return Optional.empty();
+
         int distance = getDistance();
 
         ChunkPos chunk = ctx.chunkPos();
@@ -93,8 +95,12 @@ public class WallStructure extends Structure {
         return 10000;
     }
 
-    public double getFarlandsDistance(){
+    protected double getFarlandsDistance(){
         return Config.FARLANDS_LOCATION_WORLD.get();
+    }
+
+    protected boolean getWallGen() {
+        return Config.WALL_STRUCTURES_GENERATION.get();
     }
 
 }
