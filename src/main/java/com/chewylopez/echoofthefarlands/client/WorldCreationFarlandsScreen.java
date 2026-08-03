@@ -68,10 +68,10 @@ public class WorldCreationFarlandsScreen extends Screen {
                 });
 
         CycleButton<String> farlandsWalls = buildCycle(wallGen,
-                PresetLists.getTextFromIntValue(Config.FARLANDS_BEDROCK_FIX.get() ? 0 : 1, wallGen),
-                "Bedrock Patch", (btn, value) -> {
-                    Config.FARLANDS_BEDROCK_FIX.set(PresetLists.getBooleanOptionsFromButton(value, wallGen));
-                    System.out.println("Farlands bedrock patch updated: " + Config.FARLANDS_BEDROCK_FIX);
+                PresetLists.getTextFromIntValue(Config.WALL_STRUCTURES_GENERATION.get() ? 0 : 1, wallGen),
+                "Wall Structures Gen", (btn, value) -> {
+                    Config.WALL_STRUCTURES_GENERATION.set(PresetLists.getBooleanOptionsFromButton(value, wallGen));
+                    System.out.println("Wall Structure gen updated: " + Config.WALL_STRUCTURES_GENERATION);
                 });
 
 
