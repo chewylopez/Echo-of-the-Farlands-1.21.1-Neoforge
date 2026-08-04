@@ -25,7 +25,7 @@ SOFTWARE.
 
 Personal statement from owner:
 
-I intend for this to be open to whomever wants to mess with it. MIT grants essentially public domain
+I intend for this to be open to whomever wants to mess with it on a personal basis. MIT grants essentially public domain
 level access but with required attribution (I retain credit for the work), so for any modders who want to modify
 and expand on this work I want to leave the door open to whomever wants to, especially since I won't be maintaining
 it forever.
