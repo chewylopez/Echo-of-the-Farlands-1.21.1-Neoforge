@@ -1,0 +1,61 @@
+CUSTOM SOURCE-AVAILABLE AND TRANSFORMATIVE USE LICENSE
+
+ Copyright (c) 2026 [Chewylopez / Happy Brick Studio]
+ Project: [Echo Of the Farlands]
+ Platform: Minecraft (NeoForge API)
+
+ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+ 1. DEFINITIONS
+ "Software" refers to the source code, compiled binaries, API structures, and configuration files associated with this Minecraft mod.
+
+ "Assets" refers to all non-code visual, auditory, or narrative elements, including but not limited to textures,
+ 3D models, animations, sounds, language files, and music.
+
+ "1:1 Copying" refers to the exact redistribution or rehosting of the Software or Assets, or making trivial changes
+ (such as simple value tweaks, re-skins, or minor text edits) without adding substantial new gameplay
+ mechanics, content, or creative value.
+
+ "Transformative Work" refers to a new creation that uses elements of this mod to produce something structurally
+ distinct, such as a compatibility patch, an expansion addon, an integration bridge for another mod,
+ or an entirely new feature set.
+
+ 2. SOURCE VISIBILITY AND DEVELOMENT USE
+ You are explicitly permitted to view, fork, download, and decompile the Software for personal use,
+ educational purposes, and to understand how the mod functions.
+
+ 3. TRANSFORMATIVE USE PERMISSIONS
+ You are granted a non-exclusive license to use individual code snippets or Assets to create Transformative Works, provided that:
+   a) The resulting work is genuinely transformative and not a 1:1 Copy.
+
+   b) Prominent, visible credit is given to the original project and author
+   in the description and documentation of your Transformative Work.
+
+   c) Your work does not violate the Minecraft End User License Agreement (EULA).
+
+ 4. RESTRICTIONS AND BANS
+   a) No 1:1 Sharing: You may not re-upload, rehost, mirror, or redistribute the Software or Assets in
+   their original form to any third-party platforms (including but not limited to CurseForge, Modrinth,
+   Planet Minecraft, or community Discord servers).
+
+   b) No Lazy Copying: You may not copy large portions of the Software or Assets to release a "competing"
+   or duplicate mod that offers substantially identical functionality with minor modifications.
+
+   c) Public Modpacks: You ARE permitted to include this mod in public or private modpacks distributed
+   on official platforms (CurseForge, Modrinth), provided the mod files themselves are fetched directly
+   from official release channels and not modified.
+
+ 5. COMMERCIAL USE AND MONETIZATION
+ You may not sell the Software, Assets, or any Transformative Works derived from them for real-world currency.
+ You may not gate Transformative Works behind a continuous paywall (e.g., permanent Patreon rewards).
+ Accepting optional, passive donations or platform rewards (such as CurseForge Reward Points or Modrinth
+ Creator Rewards) on genuinely Transformative Works is permitted.
+
+ 6. DISCLAIMER OF WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
